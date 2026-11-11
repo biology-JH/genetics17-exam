@@ -1,7 +1,7 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { EXAM_QUESTIONS } from '../server/questionBank';
-import { hasValidSession } from '../server/security';
-import { methodNotAllowed, sendJson } from '../server/http';
+import { EXAM_QUESTIONS } from '../server/questionBank.js';
+import { hasValidSession } from '../server/security.js';
+import { methodNotAllowed, sendJson } from '../server/http.js';
 
 export default async function handler(request: IncomingMessage, response: ServerResponse): Promise<void> {
   if (request.method !== 'GET') return methodNotAllowed(response, 'GET');

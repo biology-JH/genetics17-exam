@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { isSameOriginRequest, methodNotAllowed, readJsonBody, sendJson } from '../server/http';
-import { createSessionToken, matchesConfiguredPassword } from '../server/security';
+import { isSameOriginRequest, methodNotAllowed, readJsonBody, sendJson } from '../server/http.js';
+import { createSessionToken, matchesConfiguredPassword } from '../server/security.js';
 
 export default async function handler(request: IncomingMessage, response: ServerResponse): Promise<void> {
   if (request.method !== 'POST') return methodNotAllowed(response, 'POST');

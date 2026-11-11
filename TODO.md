@@ -33,7 +33,6 @@
 - [x] Implement the approved scientific editorial exam-paper design: readable question sequence, clear Core/Extended hierarchy, mineral-teal signature color, and no external stock imagery.
 
 ## 6. GitHub and Vercel delivery
-
-- [ ] Set up a clean, new private GitHub repository, upload all intended application files, and commit the app.
+- [x] Set up a clean, new private GitHub repository, upload all intended application files, and commit the app.
 - [ ] Link the repository to Vercel, configure runtime secrets without committing them, and deploy the working app live via Vercel.
 - [ ] Provide the final operational Vercel URL and confirmation of the security validation: answer key/passwords are server-only, not present in frontend build output or committed files.

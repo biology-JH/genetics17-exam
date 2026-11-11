@@ -1,7 +1,7 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { EXAM_QUESTIONS } from '../server/questionBank';
-import { hasValidSession, matchesConfiguredPassword } from '../server/security';
-import { isSameOriginRequest, methodNotAllowed, readJsonBody, sendJson } from '../server/http';
+import { EXAM_QUESTIONS } from '../server/questionBank.js';
+import { hasValidSession, matchesConfiguredPassword } from '../server/security.js';
+import { isSameOriginRequest, methodNotAllowed, readJsonBody, sendJson } from '../server/http.js';
 import type { Answers } from '../src/types';
 
 interface MarkingPoint {
