@@ -1,0 +1,1281 @@
+[
+  {
+    "id": "Q171_01",
+    "level": "Core",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 4,
+    "source_slides": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "visual_hint": "",
+    "stem": "Which statement correctly defines a chromosome, using the deck's core vocabulary?",
+    "parts": [
+      {
+        "id": "Q171_01a",
+        "prompt": "Select one answer.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "A chromosome is a DNA structure carrying genes.",
+          "A chromosome is an alternative form of a gene.",
+          "A chromosome is a chain of amino acids.",
+          "A chromosome is a length of DNA coding for a protein."
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q171_02",
+    "level": "Core",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 4,
+    "source_slides": [
+      7,
+      8,
+      33
+    ],
+    "visual_hint": "",
+    "stem": "Use the deck's definitions to answer both parts about genes and alleles.",
+    "parts": [
+      {
+        "id": "Q171_02a",
+        "prompt": "Define a gene.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q171_02b",
+        "prompt": "Define an allele.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q171_02c",
+        "prompt": "State what paired chromosomes carry for each gene, and one way the two alleles may be related.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q171_03",
+    "level": "Core",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 4,
+    "source_slides": [
+      14,
+      18,
+      19
+    ],
+    "visual_hint": "",
+    "stem": "A couple already has three sons. According to the deck, what is the probability that their fourth child will be a girl?",
+    "parts": [
+      {
+        "id": "Q171_03a",
+        "prompt": "Select one answer.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "0 (0%)",
+          "0.25 (25%)",
+          "0.5 (50%)",
+          "0.75 (75%)"
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q171_04",
+    "level": "Core",
+    "paper": "Paper 6",
+    "form": "Data analysis",
+    "difficulty": 5,
+    "source_slides": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "visual_hint": "",
+    "stem": "The deck gives a cross of female XX × male XY. Its worked outcome is shown here: offspring genotype XX — 2; offspring genotype XY — 2. Use only this displayed outcome and the deck's identification of XX as female and XY as male.",
+    "parts": [
+      {
+        "id": "Q171_04a",
+        "prompt": "Calculate the female-to-male offspring ratio from the displayed outcomes. Give the simplest ratio.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q171_04b",
+        "prompt": "What percentage of the displayed offspring are XX?",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q171_04c",
+        "prompt": "What percentage of the displayed offspring are XY?",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q171_04d",
+        "prompt": "Use the stated gametes to explain how both offspring genotypes can result from this cross.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      }
+    ],
+    "total_marks": 5
+  },
+  {
+    "id": "Q174a_01",
+    "level": "Core",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 4,
+    "source_slides": [
+      6,
+      7,
+      8,
+      26
+    ],
+    "visual_hint": "",
+    "stem": "Which option gives the deck's meanings of genotype and phenotype without interchanging them?",
+    "parts": [
+      {
+        "id": "Q174a_01a",
+        "prompt": "Select the one correct option.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "A. Genotype: observable features; phenotype: an organism’s allele combination.",
+          "B. Genotype: an organism’s alleles; phenotype: observable features.",
+          "C. Genotype: two identical alleles; phenotype: two different alleles.",
+          "D. Genotype: a form of a gene; phenotype: the locus shared by an allele pair."
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q174a_02",
+    "level": "Core",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 4,
+    "source_slides": [
+      8,
+      9
+    ],
+    "visual_hint": "",
+    "stem": "Use the deck’s T and t examples. Give concise answers about allele combinations, gametes and pure-breeding.",
+    "parts": [
+      {
+        "id": "Q174a_02a",
+        "prompt": "Which of TT, Tt and tt is heterozygous?",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_02b",
+        "prompt": "State what makes that genotype heterozygous.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_02c",
+        "prompt": "State the allele content of the gametes made by a Tt individual. Include the deck’s rule for how many alleles each gamete receives.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "Q174a_02d",
+        "prompt": "Explain why Tt is not pure-breeding, using the deck’s terminology.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 5
+  },
+  {
+    "id": "Q174a_03",
+    "level": "Core",
+    "paper": "Paper 3/4",
+    "form": "Short answer",
+    "difficulty": 4,
+    "source_slides": [
+      13
+    ],
+    "visual_hint": "",
+    "stem": "Slide 13 identifies cystic fibrosis as caused by recessive allele c and distinguishes CC, Cc and cc. Answer using those symbols.",
+    "parts": [
+      {
+        "id": "Q174a_03a",
+        "prompt": "Give the genotype of an unaffected carrier.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_03b",
+        "prompt": "State the phenotype status of a Cc individual in the deck.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_03c",
+        "prompt": "Give the genotype of an affected individual.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_03d",
+        "prompt": "State the status of a CC individual, including whether it is a carrier.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q174a_04",
+    "level": "Core",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 5,
+    "source_slides": [
+      14,
+      15
+    ],
+    "visual_hint": "",
+    "stem": "Use the pedigree conventions on slide 14 and the specific recessive-inheritance clue described on slide 15.",
+    "parts": [
+      {
+        "id": "Q174a_04a",
+        "prompt": "State the pedigree symbol used for a male and the symbol used for a female.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "Q174a_04b",
+        "prompt": "According to the deck, what type of inheritance is indicated by unaffected parents having an affected child?",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_04c",
+        "prompt": "For the slide 15 example, give the genotypes of both parents and of the affected child.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      }
+    ],
+    "total_marks": 5
+  },
+  {
+    "id": "Q174a_05",
+    "level": "Core",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 5,
+    "source_slides": [
+      20,
+      21,
+      22
+    ],
+    "visual_hint": "",
+    "stem": "In the worked cross on slides 20–22, T is dominant for tall and the parental cross is Tt × Tt. Give the gametes made by each parent and both offspring ratios.",
+    "parts": [
+      {
+        "id": "Q174a_05a",
+        "prompt": "List the gamete allele types made by each parent.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_05b",
+        "prompt": "Give the offspring genotype ratio, in the order TT : Tt : tt.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_05c",
+        "prompt": "Give the offspring phenotype ratio, in the order tall : dwarf.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 3
+  },
+  {
+    "id": "Q174b_01",
+    "level": "Core",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 2,
+    "source_slides": [
+      2
+    ],
+    "visual_hint": "",
+    "stem": "For Bb × Bb, what is the probability of a bb child?",
+    "parts": [
+      {
+        "id": "Q174b_01a",
+        "prompt": "Select the probability.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "75%",
+          "50%",
+          "25%",
+          "0%"
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q174b_02",
+    "level": "Core",
+    "paper": "Paper 3/4",
+    "form": "Short answer",
+    "difficulty": 3,
+    "source_slides": [
+      6
+    ],
+    "visual_hint": "",
+    "stem": "For AA × Aa, state the slide’s genotype ratio and phenotype result.",
+    "parts": [
+      {
+        "id": "Q174b_02a",
+        "prompt": "Give genotype ratio and phenotype shown by all offspring.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      }
+    ],
+    "total_marks": 2
+  },
+  {
+    "id": "Q174b_03",
+    "level": "Core",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 3,
+    "source_slides": [
+      6
+    ],
+    "visual_hint": "",
+    "stem": "Interpret the three symbols in the slide pedigree key.",
+    "parts": [
+      {
+        "id": "Q174b_03a",
+        "prompt": "State what square, circle and shading represent.",
+        "input_type": "text",
+        "marks": 3,
+        "options": []
+      }
+    ],
+    "total_marks": 3
+  },
+  {
+    "id": "Q171_05",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 5,
+    "source_slides": [
+      23,
+      24,
+      25,
+      26
+    ],
+    "visual_hint": "",
+    "stem": "Describe in order how information in a protein-coding gene leads to a protein at a ribosome. Give four stages.",
+    "parts": [
+      {
+        "id": "Q171_05a",
+        "prompt": "Write the four stages in order.",
+        "input_type": "text",
+        "marks": 4,
+        "options": []
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q171_06",
+    "level": "Extended",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 5,
+    "source_slides": [
+      20,
+      21
+    ],
+    "visual_hint": "",
+    "stem": "Which statement gives the complete relationship between a gene's base sequence and protein shape?",
+    "parts": [
+      {
+        "id": "Q171_06a",
+        "prompt": "Select one answer.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "The gene's base sequence determines amino-acid order; different amino-acid sequences form different protein shapes.",
+          "Protein shape determines the gene base sequence.",
+          "Gene base sequence determines protein shape directly without amino-acid order.",
+          "Different genes have the same amino-acid sequence and protein shape."
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q171_07",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 5,
+    "source_slides": [
+      29,
+      30,
+      31,
+      32
+    ],
+    "visual_hint": "",
+    "stem": "The deck compares gene expression in body cells. Answer using only its examples.",
+    "parts": [
+      {
+        "id": "Q171_07a",
+        "prompt": "State what the deck says about genes in most body cells and why cells may make different proteins.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "Q171_07b",
+        "prompt": "Compare insulin-gene expression in pancreatic beta and skin cells.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "Q171_07c",
+        "prompt": "Name the proteins expressed by a red blood cell precursor and a skin keratinocyte.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      }
+    ],
+    "total_marks": 6
+  },
+  {
+    "id": "Q171_08",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Short answer",
+    "difficulty": 5,
+    "source_slides": [
+      9,
+      10
+    ],
+    "visual_hint": "",
+    "stem": "Distinguish diploid and haploid nuclei using the deck and human chromosome numbers.",
+    "parts": [
+      {
+        "id": "Q171_08a",
+        "prompt": "Define diploid and give the human diploid count in pairs and total.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "Q171_08b",
+        "prompt": "Define haploid and state the number and arrangement in human gametes.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q172_01",
+    "level": "Extended",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 4,
+    "source_slides": [
+      3,
+      5,
+      18
+    ],
+    "visual_hint": "",
+    "stem": "Which statement best defines mitosis as presented in the deck?",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Select one answer.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "Nuclear division that makes genetically identical cells.",
+          "Exact DNA copying during interphase that makes two sister chromatids.",
+          "Cell division that makes varied gametes.",
+          "Specialisation of an unspecialised cell into a nerve, muscle or red blood cell."
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q172_02",
+    "level": "Extended",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 5,
+    "source_slides": [
+      10,
+      11,
+      12,
+      16
+    ],
+    "visual_hint": "",
+    "stem": "Which account correctly describes chromosome behaviour before and during mitosis, and its outcome for chromosome number?",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Select one answer.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "Chromosomes copy during mitosis then fuse.",
+          "Chromosomes copy exactly during interphase; sister chromatids separate to opposite poles and each daughter receives one copy of every chromosome, keeping the number constant.",
+          "Chromosome number halves in each daughter.",
+          "Sister chromatids separate before copying."
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q172_03",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 5,
+    "source_slides": [
+      10,
+      11,
+      12
+    ],
+    "visual_hint": "",
+    "stem": "Describe chromosome events from copying before mitosis to two daughter cells.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "State when copying happens and describe the result for each copied chromosome.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "b",
+        "prompt": "Describe what happens to sister chromatids and how each daughter receives its chromosome copy.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q172_04",
+    "level": "Extended",
+    "paper": "Paper 6",
+    "form": "Data analysis",
+    "difficulty": 5,
+    "source_slides": [
+      11,
+      12
+    ],
+    "visual_hint": "",
+    "stem": "Parent cell has 46 chromosomes; after exact copying, two daughter cells each have 46 chromosomes.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "State chromosome count in parent and each daughter.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "b",
+        "prompt": "Calculate parent-to-daughter count difference and state what it indicates.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "c",
+        "prompt": "Explain how chromosome separation gives each daughter this complement.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q172_05",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Short answer",
+    "difficulty": 4,
+    "source_slides": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "visual_hint": "",
+    "stem": "The deck lists several roles of mitosis. Name three distinct roles.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Give three different roles of mitosis.",
+        "input_type": "text",
+        "marks": 3,
+        "options": []
+      }
+    ],
+    "total_marks": 3
+  },
+  {
+    "id": "Q172_06",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 4,
+    "source_slides": [
+      2,
+      5,
+      6,
+      8
+    ],
+    "visual_hint": "",
+    "stem": "A skin graze heals as new cells replace damaged tissue. Explain using the deck how the new cells come from and why their genes match.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Explain how mitosis contributes to healing the damaged tissue.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "b",
+        "prompt": "Explain why the new cells have matching genes.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 3
+  },
+  {
+    "id": "Q172_07",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Short answer",
+    "difficulty": 4,
+    "source_slides": [
+      9,
+      15
+    ],
+    "visual_hint": "",
+    "stem": "Contrast the deck’s stated outcomes of mitosis and meiosis, including the outcome not produced by mitosis.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Give the stated outcome of mitosis and the stated outcome of meiosis.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "b",
+        "prompt": "State whether mitosis makes gametes, as described in the deck.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 3
+  },
+  {
+    "id": "Q172_08",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 5,
+    "source_slides": [
+      13,
+      14
+    ],
+    "visual_hint": "",
+    "stem": "Stem cells can specialise. The deck describes self-renewal and examples of specialised cells and functions.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "State the two outcomes of stem-cell division identified in the deck.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "b",
+        "prompt": "Give two specialised cell types from the deck and pair each with its stated function.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q173_CountPairMCQ",
+    "level": "Extended",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 4,
+    "source_slides": [
+      9
+    ],
+    "visual_hint": "",
+    "stem": "Which option gives a correct diploid (2n) and haploid (n) chromosome count for one species?",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Select the correct species and chromosome-count pair.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "Human: 2n = 46; n = 23",
+          "Fruit fly: 2n = 4; n = 8",
+          "Garden pea: 2n = 7; n = 14",
+          "Dog: 2n = 78; n = 78"
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q173_FertilisationMCQ",
+    "level": "Extended",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 4,
+    "source_slides": [
+      8,
+      10
+    ],
+    "visual_hint": "",
+    "stem": "Each human gamete contributes 23 chromosomes. What chromosome number is in the zygote after fertilisation?",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Choose the chromosome number in the zygote.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "23",
+          "46",
+          "69",
+          "92"
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q173_MeiosisDiagram",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Diagram interpretation",
+    "difficulty": 4,
+    "source_slides": [
+      13
+    ],
+    "visual_hint": "/source-assets/meiosis-slide-13.png",
+    "stem": "Study the meiosis diagram. Use only its depicted sequence and comparison labels.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "State the number of cells formed and whether they are diploid or haploid.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      }
+    ],
+    "total_marks": 2
+  },
+  {
+    "id": "Q173_VocabularyStructured",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 4,
+    "source_slides": [
+      4
+    ],
+    "visual_hint": "",
+    "stem": "Distinguish a reproductive cell from chromosome-set conditions using deck terms.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Define gamete.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "b",
+        "prompt": "Define diploid (2n).",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "c",
+        "prompt": "Define haploid (n).",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 3
+  },
+  {
+    "id": "Q173_SpeciesDataAnalysis",
+    "level": "Extended",
+    "paper": "Paper 6",
+    "form": "Data analysis",
+    "difficulty": 5,
+    "source_slides": [
+      9
+    ],
+    "visual_hint": "",
+    "stem": "Counts on slide 9: Human 2n 46, n 23; fruit fly 8,4; garden pea 14,7; dog 78,39. Calculate and compare differences.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "For each species calculate 2n minus n, labelled with species.",
+        "input_type": "text",
+        "marks": 4,
+        "options": []
+      },
+      {
+        "id": "b",
+        "prompt": "Rank species from largest to smallest difference.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 5
+  },
+  {
+    "id": "Q173_LifeCycleStructured",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 5,
+    "source_slides": [
+      10,
+      14
+    ],
+    "visual_hint": "",
+    "stem": "Describe the sequence from adult body cell through meiosis and fertilisation, and state how the next adult develops.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Describe chromosome-set changes from adult body cell to gametes and fertilised cell.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "b",
+        "prompt": "State what process grows the fertilised cell into an adult.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 3
+  },
+  {
+    "id": "Q173_VariationShort",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Short answer",
+    "difficulty": 4,
+    "source_slides": [
+      12
+    ],
+    "visual_hint": "",
+    "stem": "The deck states meiosis creates variation. Describe genetic differences and one stated importance.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Describe the gametes produced and state the stated importance of variation.",
+        "input_type": "text",
+        "marks": 3,
+        "options": []
+      }
+    ],
+    "total_marks": 3
+  },
+  {
+    "id": "Q173_MisconceptionShort",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Short answer",
+    "difficulty": 5,
+    "source_slides": [
+      13,
+      15
+    ],
+    "visual_hint": "",
+    "stem": "A student says meiosis produces two cells and haploid cells are just broken chromosomes. Correct both and state where meiosis occurs.",
+    "parts": [
+      {
+        "id": "a",
+        "prompt": "Correct the claims about cell number, chromosome-set completeness and location.",
+        "input_type": "text",
+        "marks": 3,
+        "options": []
+      }
+    ],
+    "total_marks": 3
+  },
+  {
+    "id": "Q174a_06",
+    "level": "Extended",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 5,
+    "source_slides": [
+      23
+    ],
+    "visual_hint": "",
+    "stem": "Slide 23 names a test cross by the kind of unknown individual and its partner. Which pairing is correct?",
+    "parts": [
+      {
+        "id": "Q174a_06a",
+        "prompt": "Select the one correct option.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "A. A dominant-looking unknown × tt.",
+          "B. A heterozygous unknown × Tt.",
+          "C. A recessive-looking unknown × TT.",
+          "D. A homozygous dominant unknown × TT."
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q174a_07",
+    "level": "Extended",
+    "paper": "Paper 6",
+    "form": "Data analysis",
+    "difficulty": 5,
+    "source_slides": [
+      23
+    ],
+    "visual_hint": "/source-assets/test-cross-slide-23.png",
+    "stem": "Use the Punnett square for Tt × tt. Treat squares as possible outcomes, not measured data.",
+    "parts": [
+      {
+        "id": "Q174a_07a",
+        "prompt": "Count the four cells and report numbers showing Tt and tt.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "Q174a_07b",
+        "prompt": "Write the genotype ratio Tt : tt in simplest form.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_07c",
+        "prompt": "State the phenotype ratio reported for this cross.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q174a_08",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 5,
+    "source_slides": [
+      23
+    ],
+    "visual_hint": "",
+    "stem": "Slide 23 gives Tt × tt and identifies it as a test-cross example. Reconstruct the information.",
+    "parts": [
+      {
+        "id": "Q174a_08a",
+        "prompt": "List gamete allele types from Tt parent.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_08b",
+        "prompt": "List gamete allele type from tt parent.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_08c",
+        "prompt": "Give the two offspring genotypes.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_08d",
+        "prompt": "Give stated phenotype ratio.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174a_08e",
+        "prompt": "Name the cross type.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 5
+  },
+  {
+    "id": "Q174b_04",
+    "level": "Extended",
+    "paper": "Paper 6",
+    "form": "Data analysis",
+    "difficulty": 4,
+    "source_slides": [
+      10,
+      11
+    ],
+    "visual_hint": "",
+    "stem": "A long-winged fly is crossed with a vestigial fly (vg vg). Offspring: 48 long-winged, 51 vestigial. Use these data.",
+    "parts": [
+      {
+        "id": "Q174b_04a",
+        "prompt": "Calculate total offspring.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174b_04b",
+        "prompt": "State the observed long-winged-to-vestigial ratio and its approximate form.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174b_04c",
+        "prompt": "Deduce the long-winged parent genotype using vg⁺ and vg.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174b_04d",
+        "prompt": "Give the slide’s explanation for why the ratio supports the deduction.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q174b_05",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 4,
+    "source_slides": [
+      12,
+      13
+    ],
+    "visual_hint": "",
+    "stem": "Explain codominance and use the roan-cattle example.",
+    "parts": [
+      {
+        "id": "Q174b_05a",
+        "prompt": "Define codominance and describe the stated roan-cattle heterozygote and phenotype.",
+        "input_type": "text",
+        "marks": 4,
+        "options": []
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q174b_06",
+    "level": "Extended",
+    "paper": "Paper 1/2",
+    "form": "MCQ",
+    "difficulty": 4,
+    "source_slides": [
+      15,
+      17
+    ],
+    "visual_hint": "",
+    "stem": "A Group A mother has a Group O child. Which genotype is consistent with the slide’s blood-group information?",
+    "parts": [
+      {
+        "id": "Q174b_06a",
+        "prompt": "Select the mother’s genotype.",
+        "input_type": "radio",
+        "marks": 1,
+        "options": [
+          "Iᴬ Iᴬ",
+          "Iᴬ Iᵒ",
+          "Iᴬ Iᴮ",
+          "Iᵒ Iᵒ"
+        ]
+      }
+    ],
+    "total_marks": 1
+  },
+  {
+    "id": "Q174b_07",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 4,
+    "source_slides": [
+      14,
+      15,
+      16
+    ],
+    "visual_hint": "",
+    "stem": "Consider the ABO cross IᴬIᴮ × IᵒIᵒ using slide notation.",
+    "parts": [
+      {
+        "id": "Q174b_07a",
+        "prompt": "State gametes from (i) IᴬIᴮ and (ii) IᵒIᵒ parents.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "Q174b_07b",
+        "prompt": "Give offspring genotype ratio.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174b_07c",
+        "prompt": "Give offspring phenotype ratio.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      },
+      {
+        "id": "Q174b_07d",
+        "prompt": "State which two blood groups are absent.",
+        "input_type": "text",
+        "marks": 1,
+        "options": []
+      }
+    ],
+    "total_marks": 5
+  },
+  {
+    "id": "Q174b_08",
+    "level": "Extended",
+    "paper": "Paper 3/4",
+    "form": "Structured",
+    "difficulty": 5,
+    "source_slides": [
+      22,
+      24
+    ],
+    "visual_hint": "",
+    "stem": "A carrier mother (XᴿXʳ) and normal father (XᴿY) have children. Use slide notation and outcomes.",
+    "parts": [
+      {
+        "id": "Q174b_08a",
+        "prompt": "State gametes from (i) mother and (ii) father.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      },
+      {
+        "id": "Q174b_08b",
+        "prompt": "List the four equally likely offspring genotypes.",
+        "input_type": "text",
+        "marks": 4,
+        "options": []
+      },
+      {
+        "id": "Q174b_08c",
+        "prompt": "State affected-son chance as proportion of sons and as proportion of all children.",
+        "input_type": "text",
+        "marks": 2,
+        "options": []
+      }
+    ],
+    "total_marks": 8
+  }
+]
