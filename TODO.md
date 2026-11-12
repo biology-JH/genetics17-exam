@@ -28,7 +28,7 @@
 
 - [x] On visiting the live Vercel URL, users see only a clean welcome screen demanding a “Homework Password”. Entering the correct password reveals the selected track's exam.
 - [x] At the very bottom of the completed selected-track exam, provide a secure field asking for a “Marking Password”. Entering it executes marking and reveals feedback.
-- [ ] Use unique strong generated values for both passwords and store them only in Vercel server environment variables; disclose them to the owner after deployment. Do not put either password in frontend source or browser-visible assets.
+- [x] Use unique strong generated values for both passwords and store them only in Vercel server environment variables; disclose them to the owner after deployment. Do not put either password in frontend source or browser-visible assets.
 - [x] Keep the master answer key server-only in the protected Vercel environment; do not include it in browser source, static assets, or LocalStorage. Submit student answers to the serverless grading endpoint only when marking is explicitly requested.
 - [x] As students type text or choose radio options, save their exact inputs to browser LocalStorage in real time.
 - [x] If a student switches off their computer, loses internet connection, or closes the tab, progress remains cached. When they return in the same browser and enter the Gate 1 password, their previously saved answers are restored.
@@ -57,5 +57,5 @@
 
 - [x] Set up the private GitHub repository and commit the existing application files.
 - [x] Link the repository to the existing Vercel project and keep runtime secrets out of the repository.
-- [ ] Update the Production answer key only after owner approval, then deploy the matching updated source and key through the existing GitHub/Vercel release path.
-- [ ] Provide the final operational Vercel URL and confirm that the answer key/passwords remain server-only and are absent from frontend build output and committed files.
+- [x] Update the Production answer key only after owner approval, then deploy the matching updated source and key through the existing GitHub/Vercel release path.
+- [x] Provide the final operational Vercel URL and confirm that the answer key/passwords remain server-only and are absent from frontend build output and committed files.
