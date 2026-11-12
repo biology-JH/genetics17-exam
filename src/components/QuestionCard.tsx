@@ -8,13 +8,8 @@ interface Props {
 }
 
 export default function QuestionCard({ question, number, answers, onAnswer }: Props) {
-  const visualDescription = question.id === 'Q173_MeiosisDiagram'
-    ? 'Meiosis diagram showing one cell dividing through two divisions to form four cells.'
-    : question.id === 'Q174a_07'
-      ? 'Punnett square for Tt crossed with tt, showing two Tt and two tt possible outcomes and a one-to-one tall-to-dwarf ratio.'
-      : `Source diagram from PowerPoint slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}.`;
   return (
-    <article className="question-card" id={question.id}>
+    <article className="question-card" id={question.id} data-track={question.track} data-paper={question.paper}>
       <aside className="question-rail" aria-label={`${question.level} question ${number}`}>
         <span className="question-number">{String(number).padStart(2, '0')}</span>
         <span className="level-badge">{question.level}</span>
@@ -23,27 +18,30 @@ export default function QuestionCard({ question, number, answers, onAnswer }: Pr
         <div className="question-meta">
           <span>{question.paper}</span>
           <span>{question.form}</span>
+          <span>{question.cognitive_skill}</span>
           <span>Difficulty {question.difficulty}/5</span>
-          <span>Slide{question.source_slides.length === 1 ? '' : 's'} {question.source_slides.join(', ')}</span>
+          <span>Objectives {question.objective_ids.join(', ')}</span>
+          <span>{question.source_deck} · Slide{question.source_slides.length === 1 ? '' : 's'} {question.source_slides.join(', ')}</span>
         </div>
         <p className="question-stem">{question.stem}</p>
         {question.visual_hint && (
           <figure className="question-visual">
-            <img src={question.visual_hint} alt={visualDescription} loading="lazy" />
-            <figcaption>Source visual · slide{question.source_slides.length === 1 ? '' : 's'} {question.source_slides.join(', ')}</figcaption>
+            <img src={question.visual_hint} alt={question.visual_alt || `Source diagram from ${question.source_deck}, slide ${question.source_slides.join(', ')}`} loading="lazy" />
+            <figcaption>Source visual · {question.source_deck} · slide{question.source_slides.length === 1 ? '' : 's'} {question.source_slides.join(', ')}</figcaption>
           </figure>
         )}
-        {question.parts.map((part) => {
+        {question.parts.map((part, index) => {
           const answer = answers[question.id]?.[part.id] ?? '';
+          const partLabel = `${number}, part ${index + 1}`;
           return (
             <div className="part-block" key={part.id}>
               <div className="part-heading">
-                <span className="part-letter">({part.id})</span>
+                <span className="part-letter">({String.fromCharCode(97 + index)})</span>
                 <p className="part-prompt">{part.prompt}</p>
                 <span className="part-marks">[{part.marks} mark{part.marks === 1 ? '' : 's'}]</span>
               </div>
               {part.input_type === 'radio' ? (
-                <div className="option-list" role="radiogroup" aria-label={`Question ${number}, part ${part.id}`}>
+                <div className="option-list" role="radiogroup" aria-label={`Question ${partLabel}`}>
                   {part.options.map((option, optionIndex) => {
                     const optionId = `${question.id}-${part.id}-${optionIndex}`;
                     return (
@@ -67,8 +65,8 @@ export default function QuestionCard({ question, number, answers, onAnswer }: Pr
                   value={answer}
                   onChange={(event) => onAnswer(question.id, part.id, event.target.value)}
                   placeholder="Write your answer here…"
-                  aria-label={`Question ${number}, part ${part.id} answer`}
-                  rows={Math.min(5, Math.max(2, Math.ceil(part.marks / 2)))}
+                  aria-label={`Question ${partLabel} answer`}
+                  rows={Math.min(6, Math.max(3, Math.ceil(part.marks / 2)))}
                   spellCheck="true"
                 />
               )}
