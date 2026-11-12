@@ -1,6 +1,6 @@
 # Project outcomes
 
-**Current status:** The 48-question bank, five new source-slide figures and structured-grading code pass local validation. The owner approved and Vercel saved the new Production `ANSWER_KEY_JSON`; the matching code has not yet been pushed, so the new deployment is pending. Homework, marking and session-signing Secrets were not changed; Production AI grading remains disabled because no OpenAI key is configured.
+**Current status:** The 48-question bank, five new source-slide figures and structured-grading code pass local validation and are live on Vercel. The approved expanded Production `ANSWER_KEY_JSON` works with the unchanged Homework and Marking passwords. The live Extended mark flow completed at 0/124 in a blank-answer QA run, and its 28-page marked-script PDF downloaded with 17 embedded images and all 27 objective markers. Production AI grading remains disabled because no OpenAI key is configured; marking uses deterministic server-side rubric matching.
 
 ## 1. Source-grounded Chapter 17 question bank
 
@@ -75,5 +75,5 @@
 - [x] Set up the private GitHub repository and commit the existing application files.
 - [x] Link the repository to the existing Vercel project and keep runtime secrets out of the repository.
 - [x] After owner approval, replace only Production `ANSWER_KEY_JSON` with the expanded 48-question gzip64 key; leave `HOMEWORK_PASSWORD`, `MARKING_PASSWORD`, and `SESSION_SIGNING_SECRET` unchanged.
-- [ ] Push the matching updated source to the private canonical GitHub main and verify Vercel deploys that code with the new key.
-- [ ] Provide the operational Vercel URL for the expanded release and confirm the answer key/passwords remain server-only and are absent from frontend build output and committed files.
+- [x] Push the matching updated source to the private canonical GitHub main and verify Vercel deploys that code with the new key.
+- [x] Provide the operational Vercel URL for the expanded release and confirm the answer key/passwords remain server-only and are absent from frontend build output and committed files.
