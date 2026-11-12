@@ -146,6 +146,13 @@ h1, h2, h3, p { margin-top: 0; }
 .feedback-item strong { color: var(--ink); }
 .zero-incorrect { margin-top: 24px; padding: 18px; border-left: 4px solid var(--teal); color: var(--teal-dark); background: var(--teal-soft); font-size: 24px; line-height: 1.5; }
 .footer-note { max-width: 980px; margin: 36px auto 0; color: #52635d; font-size: 24px; line-height: 1.5; text-align: center; }
+.marking-gate .ai-disclosure { margin: 16px 0 0; padding: 14px 16px; border-left: 4px solid var(--teal); color: var(--teal-dark); background: var(--teal-soft); font-size: 24px; line-height: 1.5; overflow-wrap: anywhere; }
+.grading-mode-note { margin: 14px 0 0; color: var(--muted); font-size: 24px; line-height: 1.45; }
+.marked-part { margin-top: 14px; }
+.criterion-feedback { margin: 12px 0 0; padding-left: 30px; color: #344640; font-size: 24px; line-height: 1.45; overflow-wrap: anywhere; }
+.criterion-feedback li + li { margin-top: 12px; }
+.criterion-feedback p { margin: 8px 0 0; color: #495954; font-size: 24px; line-height: 1.45; overflow-wrap: anywhere; }
+.criterion-evidence { margin: 8px 0 0; padding: 12px 16px; border-left: 3px solid var(--teal); color: var(--teal-dark); background: #fff; font-size: 24px; line-height: 1.45; overflow-wrap: anywhere; }
 .spinner { display: inline-block; flex: 0 0 24px; width: 24px; height: 24px; border: 3px solid rgba(255,255,255,.5); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 

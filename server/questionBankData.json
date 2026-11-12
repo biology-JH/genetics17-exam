@@ -1928,5 +1928,485 @@
     "total_marks": 6,
     "visual_hint": "/source-assets/topic17-17.4Monohybridinheritance-part2-slide-20-db48de4b382e.png",
     "visual_alt": "Diagram showing a marked gene locus on the X chromosome and no corresponding allele marked on the Y chromosome."
+  },
+  {
+    "id": "Q171_07_C",
+    "track": "Core",
+    "level": "Core",
+    "paper": "Paper 3",
+    "form": "Structured",
+    "cognitive_skill": "evaluation",
+    "difficulty": 5,
+    "source_deck": "17.1Chromosomes,genesandproteins.pptx",
+    "source_slides": [
+      5,
+      21
+    ],
+    "objective_ids": [
+      "17.1.2"
+    ],
+    "visual_hint": "/source-assets/topic17-gene-protein-slide-21-e76ec0446f0f.png",
+    "visual_alt": "Two source-slide diagrams: a linear sequence of amino acids and a folded protein with a labeled active site.",
+    "stem": "Figure 1 reproduces two panels from slide 21: one shows a linear sequence of amino acids and the other shows a folded protein. A trainee labels the linear chain as the gene because a gene codes for a protein. Use slide 5’s definition of a gene and Figure 1 to evaluate the label.",
+    "parts": [
+      {
+        "id": "Q171_07a_C",
+        "prompt": "Correct or reject the trainee’s label. Define a gene and explain what the amino-acid chain and folded panel represent.",
+        "input_type": "text",
+        "marks": 3,
+        "options": [],
+        "objective_ids": [
+          "17.1.2"
+        ]
+      }
+    ],
+    "total_marks": 3
+  },
+  {
+    "id": "Q171_07_E",
+    "track": "Extended",
+    "level": "Extended",
+    "paper": "Paper 4",
+    "form": "Structured",
+    "cognitive_skill": "evaluation",
+    "difficulty": 5,
+    "source_deck": "17.1Chromosomes,genesandproteins.pptx",
+    "source_slides": [
+      20,
+      21
+    ],
+    "objective_ids": [
+      "17.1.5",
+      "17.1.6"
+    ],
+    "visual_hint": "/source-assets/topic17-gene-protein-slide-21-e76ec0446f0f.png",
+    "visual_alt": "Two source-slide diagrams: a linear sequence of amino acids and a folded protein with a labeled active site.",
+    "stem": "Figure 1 shows a linear amino-acid sequence and a folded protein. A reviewer calls the panels unrelated, arguing that a gene determines only an amino-acid sequence and cannot be connected to protein shape. Use the sequence relationships stated on slides 20–21 to evaluate the reviewer’s claim.",
+    "parts": [
+      {
+        "id": "Q171_07a_E",
+        "prompt": "Identify what each panel represents and state whether the two panels can be treated as unrelated.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.1.5",
+          "17.1.6"
+        ]
+      },
+      {
+        "id": "Q171_07b_E",
+        "prompt": "Explain the relationship from gene base order to amino-acid order and then protein shape. Use this chain to evaluate the reviewer’s claim.",
+        "input_type": "text",
+        "marks": 3,
+        "options": [],
+        "objective_ids": [
+          "17.1.5",
+          "17.1.6"
+        ]
+      }
+    ],
+    "total_marks": 5
+  },
+  {
+    "id": "Q172_05_C",
+    "track": "Core",
+    "level": "Core",
+    "paper": "Paper 6",
+    "form": "Data analysis",
+    "cognitive_skill": "analysis",
+    "difficulty": 5,
+    "source_deck": "17.2Mitosis.pptx",
+    "source_slides": [
+      10
+    ],
+    "objective_ids": [
+      "17.2.3"
+    ],
+    "visual_hint": "/source-assets/topic17-mitosis-copying-slide-10-36f8f8227dfe.png",
+    "visual_alt": "A source-slide diagram showing an original chromosome replicated into a duplicated chromosome.",
+    "stem": "Use Figure 1 as the reference for the original and duplicated chromosome forms. A technician scores cells at the same point before mitosis. In an untreated control, 18 of 80 cells show the original form and 62 show the duplicated form. In a culture exposed to compound C, 52 of 80 show the original form and 28 show the duplicated form. Treat these counts as the hypothetical experiment’s data.",
+    "parts": [
+      {
+        "id": "Q172_05a_C",
+        "prompt": "Calculate the percentage of cells scored as duplicated-form in each culture. Show your calculations.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.2.3"
+        ]
+      },
+      {
+        "id": "Q172_05b_C",
+        "prompt": "Compare the results and state the conclusion they support about compound C, using the slide’s chromosome-replication information.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.2.3"
+        ]
+      }
+    ],
+    "total_marks": 4
+  },
+  {
+    "id": "Q172_05_E",
+    "track": "Extended",
+    "level": "Core",
+    "paper": "Paper 4",
+    "form": "Data analysis",
+    "cognitive_skill": "evaluation",
+    "difficulty": 5,
+    "source_deck": "17.2Mitosis.pptx",
+    "source_slides": [
+      10
+    ],
+    "objective_ids": [
+      "17.2.3"
+    ],
+    "visual_hint": "/source-assets/topic17-mitosis-copying-slide-10-36f8f8227dfe.png",
+    "visual_alt": "A source-slide diagram showing an original chromosome replicated into a duplicated chromosome.",
+    "stem": "Use Figure 1 as the reference for the original and duplicated chromosome forms. A technician scores cells at the same point before mitosis. In an untreated control, 18 of 80 cells show the original form and 62 show the duplicated form. In a culture exposed to compound C, 52 of 80 show the original form and 28 show the duplicated form. Treat these counts as the hypothetical experiment’s data.",
+    "parts": [
+      {
+        "id": "Q172_05a_E",
+        "prompt": "Calculate the percentage of cells scored as duplicated-form in each culture and the difference between the percentages. Show your calculations.",
+        "input_type": "text",
+        "marks": 3,
+        "options": [],
+        "objective_ids": [
+          "17.2.3"
+        ]
+      },
+      {
+        "id": "Q172_05b_E",
+        "prompt": "A trainee concludes, “Compound C completely blocks chromosome copying.” Evaluate this conclusion against the data and the slide, then suggest one improvement or follow-up that would make the comparison more reliable.",
+        "input_type": "text",
+        "marks": 3,
+        "options": [],
+        "objective_ids": [
+          "17.2.3"
+        ]
+      }
+    ],
+    "total_marks": 6
+  },
+  {
+    "id": "Q173_04_C",
+    "track": "Core",
+    "level": "Core",
+    "paper": "Paper 6",
+    "form": "Data analysis",
+    "cognitive_skill": "analysis",
+    "difficulty": 5,
+    "source_deck": "17.3Meiosis.pptx",
+    "source_slides": [
+      3,
+      7,
+      8,
+      9
+    ],
+    "objective_ids": [
+      "17.3.1",
+      "17.3.2"
+    ],
+    "visual_hint": "/source-assets/topic17-meiosis-cycle-slide-3-e6d16c745297.png",
+    "visual_alt": "A source-slide chromosome-count puzzle showing two human cells with 46 chromosomes leading to a zygote question.",
+    "stem": "A class is checking a hypothetical worksheet record for one human life-cycle sequence. The slides state that human body cells contain 46 chromosomes. The worksheet says: “The parent’s body cells contain 46 chromosomes; each gamete contains 46; the zygote contains 46; the next adult’s body cells contain 46.” A student argues that the worksheet must be correct because the adult count at the end is still 46. Use the human counts and chromosome-set terms shown in the slides to audit the record.",
+    "parts": [
+      {
+        "id": "Q173_04a_C",
+        "prompt": "Name the process that produces the gametes. Give the expected chromosome count and set label for the parent’s body cells, each gamete, the zygote after fusion, and the next adult’s body cells.",
+        "input_type": "text",
+        "marks": 4,
+        "options": [],
+        "objective_ids": [
+          "17.3.1",
+          "17.3.2"
+        ]
+      },
+      {
+        "id": "Q173_04b_C",
+        "prompt": "Evaluate the student’s argument. Identify the first incorrect stage in the worksheet and explain why the unchanged adult count at the end does not make the worksheet correct.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.3.2"
+        ]
+      }
+    ],
+    "total_marks": 6
+  },
+  {
+    "id": "Q173_04_E",
+    "track": "Extended",
+    "level": "Core",
+    "paper": "Paper 4",
+    "form": "Structured",
+    "cognitive_skill": "evaluation",
+    "difficulty": 5,
+    "source_deck": "17.3Meiosis.pptx",
+    "source_slides": [
+      3,
+      7,
+      8,
+      9,
+      13
+    ],
+    "objective_ids": [
+      "17.3.1",
+      "17.3.2"
+    ],
+    "visual_hint": "/source-assets/topic17-meiosis-cycle-slide-3-e6d16c745297.png",
+    "visual_alt": "A source-slide chromosome-count puzzle showing two human cells with 46 chromosomes leading to a zygote question.",
+    "stem": "A class compares two hypothetical worksheet records for a human life-cycle sequence, using chromosome counts shown in the slides. Record P lists: parent body cells 46; egg 23; sperm 23; zygote 46; next adult body cells 46. Record Q lists: parent body cells 46; egg 46; sperm 46; zygote 46; next adult body cells 46. One reviewer accepts both records because they end with 46 in the next adult. Another argues that Record Q is supported because meiosis produces four cells. Evaluate both comments against the slides’ account of meiosis and fertilisation.",
+    "parts": [
+      {
+        "id": "Q173_04a_E",
+        "prompt": "Name the process that produces gametes and identify which record gives the slide-consistent sequence. Give the set label and chromosome count for the parent body cell, each gamete, zygote, and next adult body cell.",
+        "input_type": "text",
+        "marks": 4,
+        "options": [],
+        "objective_ids": [
+          "17.3.1",
+          "17.3.2"
+        ]
+      },
+      {
+        "id": "Q173_04b_E",
+        "prompt": "Evaluate the first reviewer’s argument that Record Q is acceptable because its final adult count is 46. Locate the first incorrect entry in Q and state the correction.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.3.2"
+        ]
+      },
+      {
+        "id": "Q173_04c_E",
+        "prompt": "Evaluate the second reviewer’s appeal to the fact that meiosis produces four cells. Distinguish the number of cells produced from the chromosome set in each gamete, and state the correct human gamete count.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.3.2"
+        ]
+      }
+    ],
+    "total_marks": 8
+  },
+  {
+    "id": "Q174_10_C",
+    "track": "Core",
+    "level": "Core",
+    "paper": "Paper 3",
+    "form": "Structured",
+    "cognitive_skill": "analysis",
+    "difficulty": 5,
+    "source_deck": "17.4Monohybridinheritance(part1).pptx",
+    "source_slides": [
+      14,
+      16
+    ],
+    "objective_ids": [
+      "17.4.9",
+      "17.4.10",
+      "17.4.11",
+      "17.4.12"
+    ],
+    "visual_hint": "/source-assets/topic17-dominant-pedigree-slide-16-218b9eabb5ac.png",
+    "visual_alt": "A three-generation dominant-inheritance pedigree with affected and unaffected family members.",
+    "stem": "Figure 1 is the three-generation dominant-trait pedigree on slide 16. Use the slide 14 pedigree conventions: squares are males, circles are females, filled symbols are affected, and open symbols are unaffected. Use A for the dominant allele and a for the recessive allele. A student claims that every affected person in the pedigree must be AA. Use the pedigree evidence to test the claim.",
+    "parts": [
+      {
+        "id": "Q174_10a_C",
+        "prompt": "Use the generation I couple and their unaffected son to deduce the genotypes of both parents. Explain the evidence for the affected parent’s genotype.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.4.9",
+          "17.4.10"
+        ]
+      },
+      {
+        "id": "Q174_10b_C",
+        "prompt": "The affected generation II son has an unaffected partner and they have an unaffected child. Deduce the genotypes of this couple and explain why the affected son cannot be AA.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.4.9",
+          "17.4.10"
+        ]
+      },
+      {
+        "id": "Q174_10c_C",
+        "prompt": "Show a genetic diagram for this couple, including gametes and all possible offspring genotypes. State the expected phenotype ratio.",
+        "input_type": "text",
+        "marks": 3,
+        "options": [],
+        "objective_ids": [
+          "17.4.11",
+          "17.4.12"
+        ]
+      }
+    ],
+    "total_marks": 7
+  },
+  {
+    "id": "Q174_10_E",
+    "track": "Extended",
+    "level": "Core",
+    "paper": "Paper 4",
+    "form": "Structured",
+    "cognitive_skill": "evaluation",
+    "difficulty": 5,
+    "source_deck": "17.4Monohybridinheritance(part1).pptx",
+    "source_slides": [
+      14,
+      16
+    ],
+    "objective_ids": [
+      "17.4.9",
+      "17.4.10",
+      "17.4.11",
+      "17.4.12"
+    ],
+    "visual_hint": "/source-assets/topic17-dominant-pedigree-slide-16-218b9eabb5ac.png",
+    "visual_alt": "A three-generation dominant-inheritance pedigree with affected and unaffected family members.",
+    "stem": "Figure 1 is the three-generation dominant-trait pedigree on slide 16. Use the slide 14 conventions: squares are males, circles are females, filled symbols are affected, and open symbols are unaffected. Use A for the dominant allele and a for the recessive allele. A student argues that every filled symbol must be AA and that a mating between an affected person and an unaffected person should produce only affected children. Evaluate the claim using the whole pedigree and a genetic diagram for either generation II family with children.",
+    "parts": [
+      {
+        "id": "Q174_10a_E",
+        "prompt": "Assign genotypes to the generation I couple and their three generation II children. Use the unaffected generation II child to support the assignments.",
+        "input_type": "text",
+        "marks": 4,
+        "options": [],
+        "objective_ids": [
+          "17.4.9",
+          "17.4.10"
+        ]
+      },
+      {
+        "id": "Q174_10b_E",
+        "prompt": "For each of the two affected generation II adults who has children, deduce the genotypes of that affected parent and their unaffected partner. Refer to the pedigree evidence.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.4.9",
+          "17.4.10"
+        ]
+      },
+      {
+        "id": "Q174_10c_E",
+        "prompt": "For either generation II couple, show a 2 × 2 genetic diagram with gametes and offspring genotypes. Give the genotype and phenotype ratios, then evaluate the student’s claim.",
+        "input_type": "text",
+        "marks": 4,
+        "options": [],
+        "objective_ids": [
+          "17.4.11",
+          "17.4.12"
+        ]
+      }
+    ],
+    "total_marks": 10
+  },
+  {
+    "id": "Q174_11_C",
+    "track": "Core",
+    "level": "Core",
+    "paper": "Paper 3",
+    "form": "Structured",
+    "cognitive_skill": "analysis",
+    "difficulty": 5,
+    "source_deck": "17.4Monohybridinheritance(part2).pptx",
+    "source_slides": [
+      25
+    ],
+    "objective_ids": [
+      "17.4.10"
+    ],
+    "visual_hint": "/source-assets/topic17-x-linked-pedigree-slide-25-a3be1ec2e396.png",
+    "visual_alt": "A three-generation X-linked pedigree with genotypes shown beneath each family member.",
+    "stem": "Use Figure 1 and the Xᴺ/Xⁿ labels shown in the pedigree. A student writes: “The affected male in generation II inherited Xⁿ from his father because the father is his parent.” Use the genotypes and the slide’s stated pedigree rule to test the claim.",
+    "parts": [
+      {
+        "id": "Q174_11a_C",
+        "prompt": "State the genotypes shown for the generation I father, the generation I mother, and their affected generation II son.",
+        "input_type": "text",
+        "marks": 3,
+        "options": [],
+        "objective_ids": [
+          "17.4.10"
+        ]
+      },
+      {
+        "id": "Q174_11b_C",
+        "prompt": "Evaluate the student’s claim. Identify which parent contributed Xⁿ to the affected male and which parent contributed Y.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.4.10"
+        ]
+      }
+    ],
+    "total_marks": 5
+  },
+  {
+    "id": "Q174_11_E",
+    "track": "Extended",
+    "level": "Extended",
+    "paper": "Paper 4",
+    "form": "Structured",
+    "cognitive_skill": "evaluation",
+    "difficulty": 5,
+    "source_deck": "17.4Monohybridinheritance(part2).pptx",
+    "source_slides": [
+      25
+    ],
+    "objective_ids": [
+      "17.4.16"
+    ],
+    "visual_hint": "/source-assets/topic17-x-linked-pedigree-slide-25-a3be1ec2e396.png",
+    "visual_alt": "A three-generation X-linked pedigree with genotypes shown beneath each family member.",
+    "stem": "Use Figure 1 and focus on the affected male in generation III. An audit note claims: “He received Xⁿ from his father, so the allele was passed from father to son.” Trace the allele shown in the pedigree from generation I to this boy, then evaluate the note using the slide’s stated transmission rule.",
+    "parts": [
+      {
+        "id": "Q174_11a_E",
+        "prompt": "Trace the route by which the generation III affected male can receive Xⁿ, identifying the relevant individuals’ genotypes in the generation I mother → generation II female → generation III male path.",
+        "input_type": "text",
+        "marks": 3,
+        "options": [],
+        "objective_ids": [
+          "17.4.16"
+        ]
+      },
+      {
+        "id": "Q174_11b_E",
+        "prompt": "Evaluate the audit note using the genotypes of the generation III boy’s parents. State which parent supplied each sex chromosome.",
+        "input_type": "text",
+        "marks": 2,
+        "options": [],
+        "objective_ids": [
+          "17.4.16"
+        ]
+      },
+      {
+        "id": "Q174_11c_E",
+        "prompt": "State the slide rule that resolves the claimed transmission route.",
+        "input_type": "text",
+        "marks": 1,
+        "options": [],
+        "objective_ids": [
+          "17.4.16"
+        ]
+      }
+    ],
+    "total_marks": 6
   }
 ]

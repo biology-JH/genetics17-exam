@@ -55,5 +55,11 @@ export default async function handler(request: IncomingMessage, response: Server
     paper,
     max_score: questions.filter((question) => question.paper === paper).reduce((sum, question) => sum + question.total_marks, 0),
   }));
-  return sendJson(response, 200, { track, questions, total_marks, paper_max_scores });
+  return sendJson(response, 200, {
+    track,
+    questions,
+    total_marks,
+    paper_max_scores,
+    ai_marking_enabled: Boolean(process.env.GENETICS_OPENAI_API_KEY?.trim()),
+  });
 }

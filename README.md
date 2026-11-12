@@ -1,6 +1,6 @@
 # Chapter 17 Genetics — Exam Hall
 
-A source-grounded CIE IGCSE Biology 0610 Chapter 17 mock-exam web app. The question bank uses only the five supplied PowerPoints and integrates eight distinct diagrams/images extracted directly from their source slides. The welcome page separately uses the picture supplied in `Genetics_ModuleAssessment.pdf` as cover art only.
+A source-grounded CIE IGCSE Biology 0610 Chapter 17 mock-exam web app with 48 higher-order questions (21 Core and 27 Extended) and 13 distinct question diagrams cropped from the five supplied PowerPoints. Hypothetical practice data are labeled as such; biological facts, inheritance conventions and visuals stay slide-grounded. The welcome page separately uses the picture supplied in `Genetics_ModuleAssessment.pdf` as cover art only.
 
 ## Local development
 
@@ -33,9 +33,12 @@ Configure these names as Vercel **runtime** environment variables for Production
 - `MARKING_PASSWORD` — Gate 2 password.
 - `SESSION_SIGNING_SECRET` — random secret used to sign short-lived exam sessions.
 - `ANSWER_KEY_JSON` — private structured marking key. Store it as a Vercel Secret; use `gzip64:` plus base64-encoded gzip JSON when needed to fit the per-deployment environment limit. It is decoded only by the server-side grading handler.
+- `GENETICS_OPENAI_API_KEY` — optional server-only key to enable Structured Outputs marking for non-empty written answers; never use a `VITE_`-prefixed name.
+- `GENETICS_OPENAI_MODEL` — optional server-only model name; defaults to `gpt-4o-mini`.
 
 The frontend stores only the student's name and submitted responses in that browser's LocalStorage. It does not store either gate password or grading secrets. Answers are sent to `/api/grade` only when marking is requested.
+If the OpenAI key is not configured or model marking fails, the existing deterministic server-side rubric is used. The results screen discloses whether OpenAI processing is enabled before the student submits the Marking Password.
 
 ## Vercel
 
-Connect this private repository to a Vercel project. Use the repository root, install command `pnpm install --frozen-lockfile`, build command `pnpm build`, and output directory `dist`. Add the four runtime environment variables above in Vercel before deploying. API handlers are in `api/`; the answer-free question data is server-side in `server/questionBankData.json`.
+Connect this private repository to a Vercel project. Use the repository root, install command `pnpm install --frozen-lockfile`, build command `pnpm build`, and output directory `dist`. Add the four required runtime environment variables above in Vercel before deploying; add the two optional `GENETICS_OPENAI_*` variables only when enabling AI marking. API handlers are in `api/`; the answer-free question data is server-side in `server/questionBankData.json`.

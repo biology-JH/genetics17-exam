@@ -45,11 +45,15 @@ export interface ExamPayload {
   questions: ExamQuestion[];
   total_marks: number;
   paper_max_scores: Array<{ paper: PaperStyle; max_score: number }>;
+  ai_marking_enabled?: boolean;
 }
 
 export interface MarkingPointFeedback {
   marks: number;
   description: string;
+  awarded?: number;
+  evidence_quote?: string;
+  rationale?: string;
 }
 
 export interface PartFeedback {
@@ -72,6 +76,7 @@ export interface QuestionFeedback {
 
 export interface GradeResult {
   track: Track;
+  grading_mode?: 'openai_structured' | 'deterministic';
   score: number;
   max_score: number;
   percentage: number;

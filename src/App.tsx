@@ -257,6 +257,11 @@ export default function App() {
             <div className="eyebrow">Gate 02 / Teacher marking</div>
             <h2 id="marking-title">Ready to check your {exam.track} work?</h2>
             <p>Enter the Marking Password to submit answers for server-side marking. Correct answers are released only after this gate succeeds.</p>
+            <p className="ai-disclosure" role="note">
+              {exam.ai_marking_enabled
+                ? 'AI rubric marking is enabled. After you submit the Marking Password, your written answers are sent to OpenAI for rubric-only marking; the server verifies evidence and calculates every total.'
+                : 'AI rubric marking is not enabled; the existing deterministic server-side rubric will be used.'}
+            </p>
           </div>
           <form className="marking-form" onSubmit={submitForMarking}>
             <div className="marking-field">
@@ -278,6 +283,11 @@ export default function App() {
                 <h2 id="result-title" className="exam-heading">Your result</h2>
                 <p className="result-score">{gradeResult.score}<span>/ {gradeResult.max_score} marks · {gradeResult.percentage}%</span></p>
                 <p className="grade-note">The A*–G band is indicative only, not an official Cambridge grade boundary.</p>
+                <p className="grading-mode-note" role="status">
+                  {gradeResult.grading_mode === 'openai_structured'
+                    ? 'Scoring: Structured Outputs for written answers; multiple-choice items and all totals were handled by the server.'
+                    : 'Scoring method: deterministic server-side rubric matching.'}
+                </p>
               </div>
               <span className="grade-pill">Estimated band · {gradeResult.grade_band}</span>
             </div>
@@ -307,7 +317,20 @@ export default function App() {
                       <p><strong>Question:</strong> {question?.stem ?? 'Review the identified question.'}</p>
                       <p><strong>Source slides:</strong> {question?.source_slides.join(', ') || 'Not recorded'}</p>
                       {item.parts.filter((part) => part.earned < part.available).map((part) => (
-                        <p key={part.part_id}><strong>Part {part.part_id}:</strong> Your response: {part.response.trim() || 'No response'}. Suggested answer: {part.model_answer}</p>
+                        <div className="marked-part" key={part.part_id}>
+                          <p><strong>Part {part.part_id}:</strong> Your response: {part.response.trim() || 'No response'}. Suggested answer: {part.model_answer}</p>
+                          {part.marking_points.length > 0 && (
+                            <ul className="criterion-feedback" aria-label={`Marking criteria for part ${part.part_id}`}>
+                              {part.marking_points.map((point, pointIndex) => (
+                                <li key={`${part.part_id}-${pointIndex}`}>
+                                  <p><strong>Criterion {pointIndex + 1} · {point.awarded ?? 0}/{point.marks} marks:</strong> {point.description}</p>
+                                  {point.evidence_quote && <blockquote className="criterion-evidence">Evidence quote: “{point.evidence_quote}”</blockquote>}
+                                  {point.rationale && <p className="criterion-rationale"><strong>Rubric decision:</strong> {point.rationale}</p>}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
                       ))}
                       <p><strong>Correction:</strong> {item.correction}</p>
                       <p><strong>Slide-based syllabus guidance:</strong> {item.syllabus_guidance}</p>

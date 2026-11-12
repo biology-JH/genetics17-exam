@@ -8,7 +8,15 @@ const apiRoutes: Record<string, string> = {
   '/api/exam': 'exam.ts',
   '/api/grade': 'grade.ts',
 };
-const serverOnlyKeys = ['HOMEWORK_PASSWORD', 'MARKING_PASSWORD', 'SESSION_SIGNING_SECRET', 'ANSWER_KEY_JSON', 'ANSWER_KEY_JSON_B64'];
+const serverOnlyKeys = [
+  'HOMEWORK_PASSWORD',
+  'MARKING_PASSWORD',
+  'SESSION_SIGNING_SECRET',
+  'ANSWER_KEY_JSON',
+  'ANSWER_KEY_JSON_B64',
+  'GENETICS_OPENAI_API_KEY',
+  'GENETICS_OPENAI_MODEL',
+];
 
 function localFunctionMiddleware(): Plugin {
   return {

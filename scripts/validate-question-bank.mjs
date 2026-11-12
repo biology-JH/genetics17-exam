@@ -147,7 +147,8 @@ for (const track of ['Core', 'Extended']) {
 
 const uniqueImageDigests = new Set(referencedImages.values());
 const additionalImageDigests = new Set([...uniqueImageDigests].filter((digest) => !originalImageDigests.has(digest)));
-if (additionalImageDigests.size < 8) fail(`only ${additionalImageDigests.size} distinct diagrams/images are new relative to the original two assets; at least 8 additional images are required`);
+const minimumAdditionalImageDigests = 13;
+if (additionalImageDigests.size < minimumAdditionalImageDigests) fail(`only ${additionalImageDigests.size} distinct diagrams/images are new relative to the original two assets; at least ${minimumAdditionalImageDigests} additional images are required for the expanded bank`);
 
 if (!process.exitCode) {
   console.log(JSON.stringify({
