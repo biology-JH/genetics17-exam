@@ -259,7 +259,7 @@ export default function App() {
             <p>Enter the Marking Password to submit answers for server-side marking. Correct answers are released only after this gate succeeds.</p>
             <p className="ai-disclosure" role="note">
               {exam.ai_marking_enabled
-                ? 'AI rubric marking is enabled. After you submit the Marking Password, your written answers are sent to OpenAI for rubric-only marking; the server verifies evidence and calculates every total.'
+                ? 'AI rubric marking is enabled. After you submit the Marking Password, your written answers are sent to OpenRouter’s free model router for rubric-only marking; the server verifies evidence and calculates every total.'
                 : 'AI rubric marking is not enabled; the existing deterministic server-side rubric will be used.'}
             </p>
           </div>
@@ -284,8 +284,8 @@ export default function App() {
                 <p className="result-score">{gradeResult.score}<span>/ {gradeResult.max_score} marks · {gradeResult.percentage}%</span></p>
                 <p className="grade-note">The A*–G band is indicative only, not an official Cambridge grade boundary.</p>
                 <p className="grading-mode-note" role="status">
-                  {gradeResult.grading_mode === 'openai_structured'
-                    ? 'Scoring: Structured Outputs for written answers; multiple-choice items and all totals were handled by the server.'
+                  {gradeResult.grading_mode === 'openrouter_free'
+                    ? 'Scoring: OpenRouter free-router structured grading for written answers; multiple-choice items and all totals were handled by the server.'
                     : 'Scoring method: deterministic server-side rubric matching.'}
                 </p>
               </div>

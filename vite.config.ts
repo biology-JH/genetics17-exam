@@ -14,8 +14,7 @@ const serverOnlyKeys = [
   'SESSION_SIGNING_SECRET',
   'ANSWER_KEY_JSON',
   'ANSWER_KEY_JSON_B64',
-  'GENETICS_OPENAI_API_KEY',
-  'GENETICS_OPENAI_MODEL',
+  'OPENROUTER_API_KEY',
 ];
 
 function localFunctionMiddleware(): Plugin {

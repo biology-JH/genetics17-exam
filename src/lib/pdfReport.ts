@@ -104,7 +104,7 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
   writeText(`Student Name: ${formattedName}`, 11, 'bold', [35, 53, 48], 5);
   writeText(`Date: ${dateLabel()}`, 10, 'normal', [101, 115, 111], 12);
   writeText(`Final score: ${result.score} / ${result.max_score} · ${result.percentage}% · Indicative band ${result.grade_band}`, 13, 'bold', [15, 95, 90], 7);
-  writeText(`Grading method: ${result.grading_mode === 'openai_structured' ? 'Structured Outputs on written responses; multiple-choice items and totals computed by the server' : 'deterministic server-side rubric matcher'}`, 9.5, 'normal', [101, 115, 111], 8);
+  writeText(`Grading method: ${result.grading_mode === 'openrouter_free' ? 'OpenRouter free-router structured grading on written responses; multiple-choice items and totals computed by the server' : 'deterministic server-side rubric matcher'}`, 9.5, 'normal', [101, 115, 111], 8);
   writeText('The A*–G estimate is indicative only, not an official Cambridge grade boundary. The suggested answers and marking points in this script are slide-derived and are not an official Cambridge mark scheme.', 9, 'normal', [101, 115, 111], 12);
   writeText('Score breakdown by paper', 13, 'bold', [21, 37, 34], 5);
   for (const paper of result.paper_scores) writeText(`${paper.paper}: ${paper.score} / ${paper.max_score} marks`, 10, 'normal', [35, 53, 48], 3, 12);

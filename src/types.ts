@@ -76,7 +76,7 @@ export interface QuestionFeedback {
 
 export interface GradeResult {
   track: Track;
-  grading_mode?: 'openai_structured' | 'deterministic';
+  grading_mode?: 'openrouter_free' | 'deterministic';
   score: number;
   max_score: number;
   percentage: number;

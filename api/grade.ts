@@ -167,10 +167,10 @@ export default async function handler(request: IncomingMessage, response: Server
   }
 
   const assessments = aiCriteria.length > 0 ? await gradeWithStructuredOutputs(aiCriteria) : null;
-  if (process.env.GENETICS_OPENAI_API_KEY && aiCriteria.length > 0 && !assessments) {
-    console.warn('[grading] Structured model grading unavailable; deterministic rubric matcher used.');
+  if (process.env.OPENROUTER_API_KEY && aiCriteria.length > 0 && !assessments) {
+    console.warn('[grading] OpenRouter free-router grading unavailable; deterministic rubric matcher used.');
   }
-  const gradingMode = assessments ? 'openai_structured' : 'deterministic';
+  const gradingMode = assessments ? 'openrouter_free' : 'deterministic';
 
   let score = 0;
   let maxScore = 0;

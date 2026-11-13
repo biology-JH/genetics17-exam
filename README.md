@@ -33,12 +33,11 @@ Configure these names as Vercel **runtime** environment variables for Production
 - `MARKING_PASSWORD` — Gate 2 password.
 - `SESSION_SIGNING_SECRET` — random secret used to sign short-lived exam sessions.
 - `ANSWER_KEY_JSON` — private structured marking key. Store it as a Vercel Secret; use `gzip64:` plus base64-encoded gzip JSON when needed to fit the per-deployment environment limit. It is decoded only by the server-side grading handler.
-- `GENETICS_OPENAI_API_KEY` — optional server-only key to enable Structured Outputs marking for non-empty written answers; never use a `VITE_`-prefixed name.
-- `GENETICS_OPENAI_MODEL` — optional server-only model name; defaults to `gpt-4o-mini`.
+- `OPENROUTER_API_KEY` — optional server-only OpenRouter key for structured rubric marking of non-empty written answers; never use a `VITE_`-prefixed name. The server always requests the `openrouter/free` router.
 
-The frontend stores only the student's name and submitted responses in that browser's LocalStorage. It does not store either gate password or grading secrets. Answers are sent to `/api/grade` only when marking is requested.
-If the OpenAI key is not configured or model marking fails, the existing deterministic server-side rubric is used. The results screen discloses whether OpenAI processing is enabled before the student submits the Marking Password.
+The frontend stores only the student's name and submitted responses in that browser's LocalStorage. It does not store either gate password or grading secrets. Answers are sent to `/api/grade` only when marking is requested; the server loads the private rubric itself rather than accepting a mark scheme from the browser.
+If the OpenRouter key is not configured or model marking fails, the existing deterministic server-side rubric is used. The results screen discloses whether OpenRouter processing is enabled before the student submits the Marking Password. The `openrouter/free` router chooses among available free models, so latency and availability can vary.
 
 ## Vercel
 
-Connect this private repository to a Vercel project. Use the repository root, install command `pnpm install --frozen-lockfile`, build command `pnpm build`, and output directory `dist`. Add the four required runtime environment variables above in Vercel before deploying; add the two optional `GENETICS_OPENAI_*` variables only when enabling AI marking. API handlers are in `api/`; the answer-free question data is server-side in `server/questionBankData.json`.
+Connect this private repository to a Vercel project. Use the repository root, install command `pnpm install --frozen-lockfile`, build command `pnpm build`, and output directory `dist`. Add the four required runtime environment variables above in Vercel before deploying; set `OPENROUTER_API_KEY` only when enabling AI marking. The current `/api/grade` handler is implemented in `api/grade.ts`; do not add a parallel `api/grade.js` route. The answer-free question data is server-side in `server/questionBankData.json`.

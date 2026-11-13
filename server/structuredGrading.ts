@@ -12,11 +12,11 @@ export interface CriterionAssessment {
   rationale: string;
 }
 
-const OPENAI_CHAT_COMPLETIONS_URL = 'https://api.openai.com/v1/chat/completions';
+const OPENROUTER_CHAT_COMPLETIONS_URL = 'https://openrouter.ai/api/v1/chat/completions';
 const MAX_TOTAL_STUDENT_CHARACTERS = 80_000;
 const MAX_EVIDENCE_QUOTE_LENGTH = 1_000;
 const MAX_RATIONALE_LENGTH = 240;
-const OPENAI_TIMEOUT_MS = 90_000;
+const OPENROUTER_TIMEOUT_MS = 90_000;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -78,6 +78,12 @@ function buildUserMessage(criteria: RubricCriterion[]): string {
   ].join('\n');
 }
 
+function stripJsonMarkdownFence(content: string): string {
+  const trimmed = content.trim();
+  const fenced = trimmed.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
+  return fenced ? fenced[1].trim() : trimmed;
+}
+
 function parseAssessments(
   value: unknown,
   criteria: RubricCriterion[],
@@ -119,19 +125,16 @@ export async function gradeWithStructuredOutputs(
   criteria: RubricCriterion[],
   fetcher: typeof fetch = fetch,
 ): Promise<Map<string, CriterionAssessment> | null> {
-  const apiKey = process.env.GENETICS_OPENAI_API_KEY?.trim();
+  const apiKey = process.env.OPENROUTER_API_KEY?.trim();
   if (!apiKey || criteria.length === 0) return null;
   if (new Set(criteria.map((criterion) => criterion.id)).size !== criteria.length) return null;
   if (criteria.some((criterion) => !Number.isInteger(criterion.marks) || criterion.marks < 0)) return null;
   if (criteria.reduce((total, criterion) => total + criterion.student_answer.length, 0) > MAX_TOTAL_STUDENT_CHARACTERS) return null;
 
-  const model = process.env.GENETICS_OPENAI_MODEL?.trim() || 'gpt-4o-mini';
-  if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(model)) return null;
-
   const requestBody = {
-    model,
+    model: 'openrouter/free',
     temperature: 0,
-    max_completion_tokens: 8_000,
+    max_tokens: 8_000,
     response_format: {
       type: 'json_schema',
       json_schema: {
@@ -156,14 +159,16 @@ export async function gradeWithStructuredOutputs(
   };
 
   try {
-    const response = await fetcher(OPENAI_CHAT_COMPLETIONS_URL, {
+    const response = await fetcher(OPENROUTER_CHAT_COMPLETIONS_URL, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
+        'HTTP-Referer': 'https://genetics17-exam-eocc.vercel.app',
+        'X-OpenRouter-Title': 'Chapter 17 Genetics Exam Hall',
       },
       body: JSON.stringify(requestBody),
-      signal: AbortSignal.timeout(OPENAI_TIMEOUT_MS),
+      signal: AbortSignal.timeout(OPENROUTER_TIMEOUT_MS),
     });
     if (!response.ok) return null;
 
@@ -174,7 +179,7 @@ export async function gradeWithStructuredOutputs(
     if (typeof firstChoice.message.refusal === 'string' && firstChoice.message.refusal.length > 0) return null;
     if (typeof firstChoice.message.content !== 'string') return null;
 
-    const parsed: unknown = JSON.parse(firstChoice.message.content);
+    const parsed: unknown = JSON.parse(stripJsonMarkdownFence(firstChoice.message.content));
     return parseAssessments(parsed, criteria);
   } catch {
     return null;

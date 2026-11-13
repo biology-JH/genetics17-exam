@@ -1,6 +1,6 @@
 # Project outcomes
 
-**Current status:** The 48-question bank, five new source-slide figures and structured-grading code pass local validation and are live on Vercel. The approved expanded Production `ANSWER_KEY_JSON` works with the unchanged Homework and Marking passwords. The live Extended mark flow completed at 0/124 in a blank-answer QA run, and its 28-page marked-script PDF downloaded with 17 embedded images and all 27 objective markers. Production AI grading remains disabled because no OpenAI key is configured; marking uses deterministic server-side rubric matching.
+**Current status:** The 48-question bank, five new source-slide figures and structured-grading code are live on Vercel. The approved expanded Production `ANSWER_KEY_JSON` works with the unchanged Homework and Marking passwords. The owner reports that `OPENROUTER_API_KEY` is already configured in Vercel. The OpenRouter provider integration is implemented locally; until this code is deployed, the live app continues using its existing deterministic server-side matcher. The live Extended mark flow previously completed at 0/124 in a blank-answer QA run, and its 28-page marked-script PDF downloaded with 17 embedded images and all 27 objective markers.
 
 ## 1. Source-grounded Chapter 17 question bank
 
@@ -46,12 +46,12 @@
 - [x] Use a readable print layout and print typography in the PDF; web-interface font minimums do not apply to the PDF.
 - [x] Because no official Cambridge mark schemes for these newly written questions were supplied, label generated keys and corrections “slide-derived suggested answers/marking points—not an official Cambridge mark scheme.” Do not misrepresent the private answer key as an official scheme.
 - [x] The existing serverless grading architecture keeps answers out of the pre-marking exam payload; preserve this and release correct answers/marking points only in the successful, password-authorized grading response used for the marked script.
-- [x] When `GENETICS_OPENAI_API_KEY` is configured on the server, grade only non-empty written submissions strictly from each supplied rubric criterion and model answer using Structured Outputs JSON Schema at temperature `0`. Require an individual bounded award, exact student quote evidence and a short rationale for each criterion; keep multiple-choice items deterministic and do not ask the model to calculate total scores.
+- [x] When `OPENROUTER_API_KEY` is configured on the server, grade only non-empty written submissions strictly from each server-supplied rubric criterion and model answer through OpenRouter's `openrouter/free` router using Structured Outputs JSON Schema at temperature `0`. Require an individual bounded award, exact student quote evidence and a short rationale for each criterion; keep multiple-choice items deterministic and do not ask the model to calculate total scores.
 - [x] Wrap each student response in escaped `<student_submission>...</student_submission>` delimiters and instruct the system to ignore commands or prompt injections inside student text.
 - [x] Verify every returned evidence quote is an exact substring of the student's original response, cap awards by criterion and part, and sum all question, paper and exam totals in server code.
 - [x] Set a Vercel function `maxDuration` of 120 seconds for grading and abort the model request at 90 seconds; if AI grading is not configured or fails, use the existing deterministic rubric result rather than lose a student's grading request.
-- [x] Load `GENETICS_OPENAI_API_KEY` and optional `GENETICS_OPENAI_MODEL` only from server environment variables; never hardcode an API key or include one in browser code, the answer payload, or LocalStorage. Inform students before marking if their written answers may be processed by OpenAI when AI grading is enabled. The local Vite server now forwards these only to its Node-side API process; the browser environment remains restricted to `VITE_` values.
-- [x] Keep Production AI grading disabled until the project owner adds an OpenAI API key under `GENETICS_OPENAI_API_KEY` in the Vercel server environment; the existing deterministic grading remains available meanwhile.
+- [x] Load `OPENROUTER_API_KEY` only from server environment variables; never hardcode an API key or include one in browser code, the exam payload, or LocalStorage. Inform students before marking if their written answers may be processed by OpenRouter when AI grading is enabled. The local Vite server forwards this only to its Node-side API process; the browser environment remains restricted to `VITE_` values.
+- [x] Preserve deterministic server-side marking when `OPENROUTER_API_KEY` is absent or OpenRouter returns an error, invalid output, or timeout.
 
 ## 6. Responsive interface and accessibility
 
@@ -77,3 +77,12 @@
 - [x] After owner approval, replace only Production `ANSWER_KEY_JSON` with the expanded 48-question gzip64 key; leave `HOMEWORK_PASSWORD`, `MARKING_PASSWORD`, and `SESSION_SIGNING_SECRET` unchanged.
 - [x] Push the matching updated source to the private canonical GitHub main and verify Vercel deploys that code with the new key.
 - [x] Provide the operational Vercel URL for the expanded release and confirm the answer key/passwords remain server-only and are absent from frontend build output and committed files.
+
+## 9. OpenRouter free-router auto-marking
+
+- [x] Reuse the existing Vercel `/api/grade` function in `api/grade.ts`; do not create a conflicting `api/grade.js` route. Preserve the existing track-bound signed session, Marking Password, private answer key, answer validation and full-exam marked-script response.
+- [x] Keep the mark scheme server-side: do not accept a caller-supplied `markScheme` as authoritative input or expose the private key in the exam payload. The backend derives each rubric and model answer from `ANSWER_KEY_JSON` and sends only non-empty written responses to the model.
+- [x] Call `https://openrouter.ai/api/v1/chat/completions` from the server with `Authorization: Bearer ${process.env.OPENROUTER_API_KEY}`, `model: "openrouter/free"`, and temperature `0`.
+- [x] Instruct the model to ignore prompt injections inside escaped `<student_submission>` delimiters and mark only against the matching rubric/model answer. Request JSON-schema output, strip accidental ```json fences before parsing, validate exact evidence quotes and criterion awards in code, and calculate all score totals on the server.
+- [x] Reuse the existing submit/loading/results UI for both Core and Extended tracks; disclose OpenRouter processing before marking and show the score breakdown and written-answer feedback after marking without redesigning the interface.
+- [ ] Push the updated source to the connected private GitHub `main` branch, allow Vercel's existing Git integration to deploy it, and verify Production AI marking using the configured `OPENROUTER_API_KEY` without exposing that value.

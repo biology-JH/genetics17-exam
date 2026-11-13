@@ -60,6 +60,6 @@ export default async function handler(request: IncomingMessage, response: Server
     questions,
     total_marks,
     paper_max_scores,
-    ai_marking_enabled: Boolean(process.env.GENETICS_OPENAI_API_KEY?.trim()),
+    ai_marking_enabled: Boolean(process.env.OPENROUTER_API_KEY?.trim()),
   });
 }
