@@ -1,6 +1,6 @@
 # Project outcomes
 
-**Current status:** The 48-question bank, five new source-slide figures and structured-grading code are live on Vercel. The approved expanded Production `ANSWER_KEY_JSON` works with the unchanged Homework and Marking passwords. The owner reports that `OPENROUTER_API_KEY` is already configured in Vercel. The OpenRouter provider integration is implemented locally; until this code is deployed, the live app continues using its existing deterministic server-side matcher. The live Extended mark flow previously completed at 0/124 in a blank-answer QA run, and its 28-page marked-script PDF downloaded with 17 embedded images and all 27 objective markers.
+**Current status:** The 48-question bank, five new source-slide figures and structured-grading code are live on Vercel. The approved expanded Production `ANSWER_KEY_JSON` works with the unchanged Homework and Marking passwords. The owner reports that `OPENROUTER_API_KEY` is already configured in Vercel. OpenRouter integration commit `f10d854` is pushed, and the stable Production homepage now serves the matching built JavaScript bundle. Mocked local tests verify the OpenRouter request and key isolation; a live Production model call has not been exercised. The live Extended mark flow previously completed at 0/124 in a blank-answer QA run, and its 28-page marked-script PDF downloaded with 17 embedded images and all 27 objective markers.
 
 ## 1. Source-grounded Chapter 17 question bank
 
@@ -85,4 +85,5 @@
 - [x] Call `https://openrouter.ai/api/v1/chat/completions` from the server with `Authorization: Bearer ${process.env.OPENROUTER_API_KEY}`, `model: "openrouter/free"`, and temperature `0`.
 - [x] Instruct the model to ignore prompt injections inside escaped `<student_submission>` delimiters and mark only against the matching rubric/model answer. Request JSON-schema output, strip accidental ```json fences before parsing, validate exact evidence quotes and criterion awards in code, and calculate all score totals on the server.
 - [x] Reuse the existing submit/loading/results UI for both Core and Extended tracks; disclose OpenRouter processing before marking and show the score breakdown and written-answer feedback after marking without redesigning the interface.
-- [ ] Push the updated source to the connected private GitHub `main` branch, allow Vercel's existing Git integration to deploy it, and verify Production AI marking using the configured `OPENROUTER_API_KEY` without exposing that value.
+- [x] Push the updated source to the connected private GitHub `main` branch and allow Vercel's existing Git integration to deploy it. The stable Production asset hash matches the tested OpenRouter build.
+- [ ] Verify a live Production AI-marking request using the configured `OPENROUTER_API_KEY` without exposing that value.
