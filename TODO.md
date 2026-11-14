@@ -58,6 +58,8 @@
 - [x] Deliver a fully dynamic, responsive single-page application using React.
 - [x] Retain the scientific editorial exam-paper design, mineral-teal signature color, readable question sequence and no external stock imagery.
 - [x] Improve the Gate 01 welcome front page using the exact DNA/protein picture embedded in the user-attached `Genetics_ModuleAssessment.pdf` as prominent hero art; keep the track selection and Homework Password gate clear, responsive and fully usable.
+- [x] Before the Homework Password field, show a required `Student Name` field with the same label style, input format, font and size as the Homework Password field.
+- [x] Record the entered name before unlock, restore it on return to the same browser, carry it into the existing results and marked-script PDF, and do not ask for the name again after successful Homework Password login.
 - [x] Apply a minimum font size of 24 CSS pixels to all readable text in the web quiz interface, including questions, choices, fields, buttons, instructions, labels, metadata, feedback and score text; headings may be larger.
 - [x] Keep the 24px-minimum interface responsive and readable on narrow screens, with sufficient line-height and scrolling rather than shrinking text below 24px.
 

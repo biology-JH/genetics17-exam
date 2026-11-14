@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { ArrowRight, BookOpen, Check, Dna, Download, LockKeyhole, ShieldCheck } from 'lucide-react';
 import QuestionCard from './components/QuestionCard';
 import { getExam, markExam, unlockExam } from './lib/api';
-import { clearProgress, loadProgress, saveProgress } from './lib/storage';
+import { clearProgress, loadProgress, loadStudentName, saveProgress, saveStudentName } from './lib/storage';
 import { downloadMarkedScript } from './lib/pdfReport';
 import type { Answers, ExamPayload, GradeResult, Track } from './types';
 
@@ -26,7 +26,7 @@ export default function App() {
   const [sessionToken, setSessionToken] = useState('');
   const [exam, setExam] = useState<ExamPayload | null>(null);
   const [answers, setAnswers] = useState<Answers>({});
-  const [studentName, setStudentName] = useState('');
+  const [studentName, setStudentName] = useState(() => loadStudentName());
   const [savedAt, setSavedAt] = useState('');
   const [progressLoaded, setProgressLoaded] = useState(false);
   const [gradeResult, setGradeResult] = useState<GradeResult | null>(null);
@@ -42,6 +42,12 @@ export default function App() {
     setSavedAt(updatedAt);
   }, [answers, studentName, progressLoaded, exam]);
 
+  useEffect(() => {
+    if (!selectedTrack) return;
+    const savedName = loadStudentName(selectedTrack);
+    if (savedName && !studentName.trim()) setStudentName(savedName);
+  }, [selectedTrack, studentName]);
+
   const answeredParts = useMemo(() => exam?.questions.reduce((count, question) =>
     count + question.parts.filter((part) => (answers[question.id]?.[part.id] ?? '').trim().length > 0).length, 0) ?? 0, [exam, answers]);
   const totalParts = useMemo(() => exam?.questions.reduce((count, question) => count + question.parts.length, 0) ?? 0, [exam]);
@@ -55,6 +61,10 @@ export default function App() {
       setError('Choose either Core or Extended before starting.');
       return;
     }
+    if (!studentName.trim()) {
+      setError('Enter your name before unlocking the exam.');
+      return;
+    }
     setGateBusy(true);
     try {
       const token = await unlockExam(homeworkPassword, selectedTrack);
@@ -63,7 +73,9 @@ export default function App() {
       const allowedQuestionIds = payload.questions.map((question) => question.id);
       const saved = loadProgress(payload.track, allowedQuestionIds);
       setAnswers(saved.answers);
-      setStudentName(saved.studentName);
+      const restoredName = loadStudentName(payload.track) || saved.studentName || studentName;
+      setStudentName(restoredName);
+      if (restoredName) saveStudentName(restoredName);
       setSavedAt(saved.updatedAt);
       setProgressLoaded(true);
       setSessionToken(token);
@@ -83,6 +95,7 @@ export default function App() {
 
   function updateStudentName(value: string) {
     setStudentName(value);
+    saveStudentName(value);
   }
 
   function restartProgress() {
@@ -91,7 +104,6 @@ export default function App() {
     if (!confirmed) return;
     clearProgress(exam.track, exam.questions.map((question) => question.id));
     setAnswers({});
-    setStudentName('');
     setGradeResult(null);
     setMarkingPassword('');
     setError('');
@@ -187,6 +199,8 @@ export default function App() {
               </fieldset>
               <p className="track-lock-note" id="track-lock-note"><ShieldCheck size={26} aria-hidden="true" /> One session is restricted to one track. The server checks that selection on exam and marking requests.</p>
               <form onSubmit={submitHomeworkPassword}>
+                <label className="field-label" htmlFor="student-name">Student Name</label>
+                <input id="student-name" className="text-field" type="text" value={studentName} onChange={(event) => updateStudentName(event.target.value)} placeholder="Enter your name for the report" autoComplete="name" required />
                 <label className="field-label" htmlFor="homework-password">Homework Password</label>
                 <input id="homework-password" className="text-field" type="password" autoComplete="off" value={homeworkPassword} onChange={(event) => setHomeworkPassword(event.target.value)} required />
                 <button className="primary-button full-width" type="submit" disabled={gateBusy || !selectedTrack}>
@@ -231,13 +245,6 @@ export default function App() {
           <div className="progress-summary">Progress · {answeredParts}/{totalParts} parts answered ({progressPercent}%)</div>
           <button className="reset-button" type="button" onClick={restartProgress}>Clear My Progress and Restart</button>
         </div>
-        <section className="student-row" aria-label="Student information">
-          <div>
-            <label className="field-label" htmlFor="student-name">Student Name</label>
-            <input id="student-name" className="text-field" type="text" value={studentName} onChange={(event) => updateStudentName(event.target.value)} placeholder="Enter your name for the report" autoComplete="name" />
-          </div>
-          <p className="student-note">Your name and this track’s answers are saved only in this browser. Your name appears in the marked script.</p>
-        </section>
 
         {coreQuestions.length > 0 && (
           <section id="core-section" aria-labelledby="core-title">

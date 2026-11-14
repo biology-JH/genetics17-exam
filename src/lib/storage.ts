@@ -2,6 +2,7 @@ import type { Answers, SavedProgress, Track } from '../types';
 
 const LEGACY_STORAGE_KEY = 'genetics17-progress-v1';
 const storageKey = (track: Track) => `genetics17-progress-v2-${track.toLowerCase()}`;
+const STUDENT_NAME_STORAGE_KEY = 'genetics17-student-name-v1';
 
 const emptyProgress = (): SavedProgress => ({ answers: {}, studentName: '', updatedAt: '' });
 
@@ -39,6 +40,36 @@ export function loadProgress(track: Track, allowedQuestionIds: string[]): SavedP
     return { ...legacy, answers: filterAnswers(legacy.answers, allowed) };
   } catch {
     return emptyProgress();
+  }
+}
+
+export function loadStudentName(track?: Track): string {
+  if (typeof window === 'undefined') return '';
+  try {
+    const savedName = window.localStorage.getItem(STUDENT_NAME_STORAGE_KEY) ?? '';
+    if (savedName.trim()) return savedName;
+    if (track) {
+      const current = parseProgress(window.localStorage.getItem(storageKey(track)));
+      if (current.studentName.trim()) return current.studentName;
+      const legacy = parseProgress(window.localStorage.getItem(LEGACY_STORAGE_KEY));
+      if (legacy.studentName.trim()) return legacy.studentName;
+    }
+    return '';
+  } catch {
+    return '';
+  }
+}
+
+export function saveStudentName(name: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    if (name.trim()) {
+      window.localStorage.setItem(STUDENT_NAME_STORAGE_KEY, name);
+    } else {
+      window.localStorage.removeItem(STUDENT_NAME_STORAGE_KEY);
+    }
+  } catch {
+    // Keep the gate usable if browser storage is unavailable.
   }
 }
 

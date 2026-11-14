@@ -12,6 +12,8 @@ Before this enhancement, the bank contained 38 higher-order questions (16 Core a
 
 The exam landing screen will require a student to choose exactly one track before entering the Homework Password:
 
+After a track is selected, place a required `Student Name` field directly above the Homework Password field. Reuse the password field's existing label and input classes so the name field has the same font, size, spacing, and format. Save the name before unlock in a dedicated LocalStorage value, restore it when the student returns, and carry it through to the existing results/PDF flow without asking for it again after login.
+
 | Track | Paper-style content | Required objective coverage |
 | --- | --- | --- |
 | Core | Paper 1 (MCQ), Paper 3 (structured), Paper 6 (genetics-context Alternative to Practical/data analysis) | All 29 Core and Core/Supplement objectives in Topic 17 |
@@ -75,7 +77,7 @@ Reuse the existing TypeScript/React/Vite frontend, Vercel serverless handlers, `
 - `src/App.tsx` — track choice, password gates, locked-session flow and results.
 - `src/components/QuestionCard.tsx` and related components — question layout, track/level badges, source visuals and 24px-minimum text.
 - `src/lib/api.ts` — track-aware unlock, question fetch and marking requests.
-- `src/lib/storage.ts` — track-keyed answer autosave/restore and same-track restart.
+- `src/lib/storage.ts` — track-keyed answer autosave/restore, same-track restart, and a separate name-only LocalStorage value saved before unlock.
 - `src/lib/pdfReport.ts` — complete client-generated marked-script PDF with embedded diagrams.
 - `src/types.ts` — client-safe question, track, visual and report contracts; never include pre-marking answers.
 - `server/questionBankData.json` — answer-free questions with track, level, paper, objective IDs, cognitive skill, source slides and visual references.
