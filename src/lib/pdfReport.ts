@@ -46,6 +46,8 @@ function dateLabel(): string {
   return new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date());
 }
 
+const PDF_FONT_SIZE = 12;
+
 export async function downloadMarkedScript(studentName: string, exam: ExamPayload, answers: Answers, result: GradeResult): Promise<void> {
   if (result.track !== exam.track) throw new Error('The marked script does not match the selected exam track.');
   const { jsPDF } = await import('jspdf');
@@ -62,35 +64,51 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     cursor = margin;
   }
 
-  function writeText(text: string, size = 10, style: 'normal' | 'bold' = 'normal', color: [number, number, number] = [35, 53, 48], after = 7, indent = 0): void {
+  function writeText(text: string, size = PDF_FONT_SIZE, style: 'normal' | 'bold' = 'normal', color: [number, number, number] = [35, 53, 48], after = 7, indent = 0): void {
     document.setFont('helvetica', style);
     document.setFontSize(size);
     document.setTextColor(...color);
     const rows = document.splitTextToSize(pdfSafeText(text || ' '), contentWidth - indent) as string[];
-    const lineHeight = size * 1.42;
-    ensureSpace(rows.length * lineHeight + after);
-    document.text(rows, margin + indent, cursor);
-    cursor += rows.length * lineHeight + after;
+    const lineHeight = size * 1.15;
+    const compactAfter = Math.min(Math.max(after * 0.35, 1), 3);
+    let rowIndex = 0;
+    while (rowIndex < rows.length) {
+      const availableLines = Math.floor((pageHeight - margin - cursor) / lineHeight);
+      if (availableLines < 1) {
+        document.addPage();
+        cursor = margin;
+        continue;
+      }
+      const chunk = rows.slice(rowIndex, rowIndex + availableLines);
+      document.text(chunk, margin + indent, cursor);
+      cursor += chunk.length * lineHeight;
+      rowIndex += chunk.length;
+      if (rowIndex < rows.length) {
+        document.addPage();
+        cursor = margin;
+      }
+    }
+    cursor += compactAfter;
   }
 
   function writeRule(): void {
-    ensureSpace(18);
+    ensureSpace(10);
     document.setDrawColor(204, 216, 209);
     document.setLineWidth(.8);
     document.line(margin, cursor, pageWidth - margin, cursor);
-    cursor += 17;
+    cursor += 9;
   }
 
   function writeImage(image: EmbeddedImage, alt: string, source: string): void {
     const maxWidth = contentWidth;
-    const maxHeight = 245;
+    const maxHeight = 180;
     const scale = Math.min(maxWidth / image.width, maxHeight / image.height, 1);
     const width = image.width * scale;
     const height = image.height * scale;
     ensureSpace(height + 38);
     document.addImage(image.data, image.format, margin, cursor, width, height, undefined, 'FAST');
     cursor += height + 7;
-    writeText(`${alt} · ${source}`, 8.5, 'normal', [101, 115, 111], 10);
+    writeText(`${alt} · ${source}`, 12, 'normal', [101, 115, 111], 10);
   }
 
   const imageUrls = [...new Set(exam.questions.map((question) => question.visual_hint).filter(Boolean))];
@@ -98,18 +116,18 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
   await Promise.all(imageUrls.map(async (url) => loadedImages.set(url, await loadEmbeddedImage(url))));
 
   const formattedName = studentName.trim() || 'Not provided';
-  writeText('GENETICS / 17', 10, 'bold', [15, 119, 112], 8);
-  writeText(`Marked script · ${result.track} track`, 23, 'normal', [21, 37, 34], 13);
-  writeText('CIE IGCSE Biology 0610 · Topic 17: Inheritance', 11, 'bold', [35, 53, 48], 12);
-  writeText(`Student Name: ${formattedName}`, 11, 'bold', [35, 53, 48], 5);
-  writeText(`Date: ${dateLabel()}`, 10, 'normal', [101, 115, 111], 12);
-  writeText(`Final score: ${result.score} / ${result.max_score} · ${result.percentage}% · Indicative band ${result.grade_band}`, 13, 'bold', [15, 95, 90], 7);
-  writeText(`Grading method: ${result.grading_mode === 'openrouter_free' ? 'OpenRouter free-router structured grading on written responses; multiple-choice items and totals computed by the server' : 'deterministic server-side rubric matcher'}`, 9.5, 'normal', [101, 115, 111], 8);
-  writeText('The A*–G estimate is indicative only, not an official Cambridge grade boundary. The suggested answers and marking points in this script are slide-derived and are not an official Cambridge mark scheme.', 9, 'normal', [101, 115, 111], 12);
-  writeText('Score breakdown by paper', 13, 'bold', [21, 37, 34], 5);
-  for (const paper of result.paper_scores) writeText(`${paper.paper}: ${paper.score} / ${paper.max_score} marks`, 10, 'normal', [35, 53, 48], 3, 12);
+  writeText('GENETICS / 17', 12, 'bold', [15, 119, 112], 8);
+  writeText(`Marked script · ${result.track} track`, 12, 'normal', [21, 37, 34], 13);
+  writeText('CIE IGCSE Biology 0610 · Topic 17: Inheritance', 12, 'bold', [35, 53, 48], 12);
+  writeText(`Student Name: ${formattedName}`, 12, 'bold', [35, 53, 48], 5);
+  writeText(`Date: ${dateLabel()}`, 12, 'normal', [101, 115, 111], 12);
+  writeText(`Final score: ${result.score} / ${result.max_score} · ${result.percentage}% · Indicative band ${result.grade_band}`, 12, 'bold', [15, 95, 90], 7);
+  writeText(`Grading method: ${result.grading_mode === 'openrouter_free' ? 'OpenRouter free-router structured grading on written responses; multiple-choice items and totals computed by the server' : 'deterministic server-side rubric matcher'}`, 12, 'normal', [101, 115, 111], 8);
+  writeText('The A*–G estimate is indicative only, not an official Cambridge grade boundary. The suggested answers and marking points in this script are slide-derived and are not an official Cambridge mark scheme.', 12, 'normal', [101, 115, 111], 12);
+  writeText('Score breakdown by paper', 12, 'bold', [21, 37, 34], 5);
+  for (const paper of result.paper_scores) writeText(`${paper.paper}: ${paper.score} / ${paper.max_score} marks`, 12, 'normal', [35, 53, 48], 3, 12);
   writeRule();
-  writeText('Questions, submitted answers and suggested marking points', 15, 'bold', [21, 37, 34], 12);
+  writeText('Questions, submitted answers and suggested marking points', 12, 'bold', [21, 37, 34], 12);
 
   const markedById = new Map(result.marked_questions.map((item) => [item.question_id, item]));
   for (let index = 0; index < exam.questions.length; index += 1) {
@@ -118,9 +136,9 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     if (!marked) throw new Error(`Marked-script data is missing for ${question.id}.`);
     writeRule();
     writeText(`Question ${index + 1} · ${question.paper} · ${question.level} · ${marked.earned} / ${marked.available} marks`, 12, 'bold', [21, 37, 34], 5);
-    writeText(`Objective IDs: ${question.objective_ids.join(', ')} · Cognitive skill: ${question.cognitive_skill} · Difficulty ${question.difficulty}/5`, 8.5, 'normal', [101, 115, 111], 5);
-    writeText(`Source: ${question.source_deck}, slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`, 8.5, 'normal', [101, 115, 111], 7);
-    writeText(question.stem, 11, 'bold', [35, 53, 48], 8);
+    writeText(`Objective IDs: ${question.objective_ids.join(', ')} · Cognitive skill: ${question.cognitive_skill} · Difficulty ${question.difficulty}/5`, 12, 'normal', [101, 115, 111], 5);
+    writeText(`Source: ${question.source_deck}, slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`, 12, 'normal', [101, 115, 111], 7);
+    writeText(question.stem, 12, 'bold', [35, 53, 48], 8);
     if (question.visual_hint) {
       const image = loadedImages.get(question.visual_hint);
       if (!image) throw new Error(`The source diagram for ${question.id} is unavailable.`);
@@ -132,31 +150,31 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
       const part = question.parts[partIndex];
       const feedback = feedbackByPart.get(part.id);
       if (!feedback) throw new Error(`Marked-script data is missing for ${question.id}, part ${part.id}.`);
-      writeText(`(${String.fromCharCode(97 + partIndex)}) ${part.prompt} [${part.marks} mark${part.marks === 1 ? '' : 's'}]`, 10, 'bold', [21, 37, 34], 5);
+      writeText(`(${String.fromCharCode(97 + partIndex)}) ${part.prompt} [${part.marks} mark${part.marks === 1 ? '' : 's'}]`, 12, 'bold', [21, 37, 34], 5);
       if (part.input_type === 'radio') {
-        for (const option of part.options) writeText(`${answers[question.id]?.[part.id] === option ? '(selected)' : '( )'} ${option}`, 9, 'normal', [75, 90, 84], 2, 12);
+        for (const option of part.options) writeText(`${answers[question.id]?.[part.id] === option ? '(selected)' : '( )'} ${option}`, 12, 'normal', [75, 90, 84], 2, 12);
       }
-      writeText(`Student answer: ${feedback.response.trim() || 'No response'}`, 9.5, 'normal', [75, 90, 84], 4);
-      writeText(`Marks awarded: ${feedback.earned} / ${feedback.available}`, 9.5, 'bold', feedback.earned === feedback.available ? [15, 95, 90] : [140, 76, 53], 4);
-      writeText(`Suggested answer: ${feedback.model_answer || 'No model answer supplied.'}`, 9.5, 'normal', [35, 53, 48], 4);
+      writeText(`Student answer: ${feedback.response.trim() || 'No response'}`, 12, 'normal', [75, 90, 84], 4);
+      writeText(`Marks awarded: ${feedback.earned} / ${feedback.available}`, 12, 'bold', feedback.earned === feedback.available ? [15, 95, 90] : [140, 76, 53], 4);
+      writeText(`Suggested answer: ${feedback.model_answer || 'No model answer supplied.'}`, 12, 'normal', [35, 53, 48], 4);
       if (feedback.marking_points.length) {
-        writeText('Suggested marking points:', 9, 'bold', [15, 119, 112], 2);
+        writeText('Suggested marking points:', 12, 'bold', [15, 119, 112], 2);
         for (const point of feedback.marking_points as MarkingPointFeedback[]) {
-          writeText(`• ${point.awarded ?? 0}/${point.marks} marks — ${point.description}`, 9, 'normal', [35, 53, 48], 2, 12);
-          if (point.evidence_quote) writeText(`Evidence quote: “${point.evidence_quote}”`, 8.5, 'normal', [75, 90, 84], 2, 12);
-          if (point.rationale) writeText(`Rubric decision: ${point.rationale}`, 8.5, 'normal', [101, 115, 111], 2, 12);
+          writeText(`• ${point.awarded ?? 0}/${point.marks} marks — ${point.description}`, 12, 'normal', [35, 53, 48], 2, 12);
+          if (point.evidence_quote) writeText(`Evidence quote: “${point.evidence_quote}”`, 12, 'normal', [75, 90, 84], 2, 12);
+          if (point.rationale) writeText(`Rubric decision: ${point.rationale}`, 12, 'normal', [101, 115, 111], 2, 12);
         }
       }
     }
-    writeText(`Slide-derived correction: ${marked.correction}`, 9.5, 'normal', [35, 53, 48], 4);
-    writeText(`Topic 17 guidance: ${marked.syllabus_guidance}`, 9.5, 'normal', [35, 53, 48], 9);
+    writeText(`Slide-derived correction: ${marked.correction}`, 12, 'normal', [35, 53, 48], 4);
+    writeText(`Topic 17 guidance: ${marked.syllabus_guidance}`, 12, 'normal', [35, 53, 48], 9);
   }
 
   const pageCount = document.getNumberOfPages();
   for (let page = 1; page <= pageCount; page += 1) {
     document.setPage(page);
     document.setFont('helvetica', 'normal');
-    document.setFontSize(8);
+    document.setFontSize(PDF_FONT_SIZE);
     document.setTextColor(123, 137, 132);
     document.text(`Chapter 17 Genetics · ${result.track} · ${page} / ${pageCount}`, pageWidth - margin, pageHeight - 20, { align: 'right' });
   }
