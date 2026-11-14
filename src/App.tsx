@@ -264,11 +264,6 @@ export default function App() {
             <div className="eyebrow">Gate 02 / Teacher marking</div>
             <h2 id="marking-title">Ready to check your {exam.track} work?</h2>
             <p>Enter the Marking Password to submit answers for server-side marking. Correct answers are released only after this gate succeeds.</p>
-            <p className="ai-disclosure" role="note">
-              {exam.ai_marking_enabled
-                ? 'AI rubric marking is enabled. After you submit the Marking Password, your written answers are sent to OpenRouter’s free model router for rubric-only marking; the server verifies evidence and calculates every total.'
-                : 'AI rubric marking is not enabled; the existing deterministic server-side rubric will be used.'}
-            </p>
           </div>
           <form className="marking-form" onSubmit={submitForMarking}>
             <div className="marking-field">
@@ -290,11 +285,6 @@ export default function App() {
                 <h2 id="result-title" className="exam-heading">Your result</h2>
                 <p className="result-score">{gradeResult.score}<span>/ {gradeResult.max_score} marks · {gradeResult.percentage}%</span></p>
                 <p className="grade-note">The A*–G band is indicative only, not an official Cambridge grade boundary.</p>
-                <p className="grading-mode-note" role="status">
-                  {gradeResult.grading_mode === 'openrouter_free'
-                    ? 'Scoring: OpenRouter free-router structured grading for written answers; multiple-choice items and all totals were handled by the server.'
-                    : 'Scoring method: deterministic server-side rubric matching.'}
-                </p>
               </div>
               <span className="grade-pill">Estimated band · {gradeResult.grade_band}</span>
             </div>
@@ -346,7 +336,6 @@ export default function App() {
                 })}
               </div>
             )}
-            <p className="footer-note">The answer key and guidance are slide-derived suggested answers and marking points, not an official Cambridge mark scheme.</p>
           </section>
         )}
       </main>

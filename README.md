@@ -36,7 +36,7 @@ Configure these names as Vercel **runtime** environment variables for Production
 - `OPENROUTER_API_KEY` — optional server-only OpenRouter key for structured rubric marking of non-empty written answers; never use a `VITE_`-prefixed name. The server always requests the `openrouter/free` router.
 
 The frontend stores only the student's name and submitted responses in that browser's LocalStorage. It does not store either gate password or grading secrets. Answers are sent to `/api/grade` only when marking is requested; the server loads the private rubric itself rather than accepting a mark scheme from the browser.
-If the OpenRouter key is not configured or model marking fails, the existing deterministic server-side rubric is used. The results screen discloses whether OpenRouter processing is enabled before the student submits the Marking Password. The `openrouter/free` router chooses among available free models, so latency and availability can vary.
+If the OpenRouter key is not configured or model marking fails, the existing deterministic server-side rubric is used. The student-facing Gate 2 and results screen do not identify OpenRouter/AI or disclose whether provider or deterministic grading produced the result. The `openrouter/free` router chooses among available free models, so latency and availability can vary.
 
 ## Vercel
 
