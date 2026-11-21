@@ -1,4 +1,4 @@
-import type { Answers, ExamPayload, GradeResult, Track } from '../types';
+import type { Answers, ExamPayload, GradeResult, Session, Track } from '../types';
 
 async function requestJSON<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, {
@@ -11,19 +11,17 @@ async function requestJSON<T>(url: string, init?: RequestInit): Promise<T> {
   return payload;
 }
 
-export async function unlockExam(password: string, track: Track): Promise<string> {
-  const result = await requestJSON<{ token: string; track: Track }>('/api/unlock', {
+export async function unlockExam(password: string, track: Track, session: Session): Promise<string> {
+  const result = await requestJSON<{ token: string; track: Track; session: Session }>('/api/unlock', {
     method: 'POST',
-    body: JSON.stringify({ password, track }),
+    body: JSON.stringify({ password, track, session }),
   });
-  if (result.track !== track) throw new Error('The selected track did not match the unlocked exam session.');
+  if (result.track !== track || result.session !== session) throw new Error('The selected session did not match the unlocked exam.');
   return result.token;
 }
 
 export function getExam(token: string): Promise<ExamPayload> {
-  return requestJSON<ExamPayload>('/api/exam', {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  return requestJSON<ExamPayload>('/api/exam', { headers: { Authorization: `Bearer ${token}` } });
 }
 
 export function markExam(token: string, markingPassword: string, answers: Answers): Promise<GradeResult> {

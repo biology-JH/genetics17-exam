@@ -89,3 +89,12 @@
 - [x] Reuse the existing submit/loading/results UI for both Core and Extended tracks; disclose OpenRouter processing before marking and show the score breakdown and written-answer feedback after marking without redesigning the interface.
 - [x] Push the updated source to the connected private GitHub `main` branch and allow Vercel's existing Git integration to deploy it. The stable Production asset hash matches the tested OpenRouter build.
 - [ ] Verify a live Production AI-marking request using the configured `OPENROUTER_API_KEY` without exposing that value.
+
+## 10. Four independent weekly sessions
+
+- [x] Split the assignment into separate 17.1, 17.2, 17.3 and 17.4 navigation tabs using the existing question IDs, with no question repeated within a session.
+- [x] Bind the selected track and weekly session into the signed server token; exam delivery and grading reject questions outside that session.
+- [x] Namespace autosaved answers by both track and week so clearing or submitting one session cannot affect the other three.
+- [x] Use unique server-only `MARKING_PASSWORD_171`, `MARKING_PASSWORD_172`, `MARKING_PASSWORD_173` and `MARKING_PASSWORD_174` values for the four marking gates.
+- [x] Send only the active session's questions, student answers and server-side rubric to AI marking, and calculate the score against that session's total.
+- [x] Provide a `Download Marked PDF · 17.x` action that contains only the active session's questions, answers, inline marking feedback and weekly score.

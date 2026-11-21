@@ -1,4 +1,5 @@
 export type Track = 'Core' | 'Extended';
+export type Session = '17.1' | '17.2' | '17.3' | '17.4';
 export type Level = 'Core' | 'Extended';
 export type PaperStyle = 'Paper 1' | 'Paper 2' | 'Paper 3' | 'Paper 4' | 'Paper 6';
 export type QuestionForm = 'MCQ' | 'Short answer' | 'Structured' | 'Data analysis' | 'Diagram interpretation';
@@ -42,6 +43,7 @@ export interface PaperScore {
 
 export interface ExamPayload {
   track: Track;
+  session: Session;
   questions: ExamQuestion[];
   total_marks: number;
   paper_max_scores: Array<{ paper: PaperStyle; max_score: number }>;
@@ -76,6 +78,7 @@ export interface QuestionFeedback {
 
 export interface GradeResult {
   track: Track;
+  session: Session;
   grading_mode?: 'openrouter_free' | 'deterministic';
   score: number;
   max_score: number;

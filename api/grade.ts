@@ -2,7 +2,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http';
 import { Buffer } from 'node:buffer';
 import { gunzipSync } from 'node:zlib';
 import { EXAM_QUESTIONS } from '../server/questionBank.js';
-import { getSessionTrack, matchesConfiguredPassword } from '../server/security.js';
+import { getSessionContext, matchesConfiguredPassword } from '../server/security.js';
 import { gradeWithStructuredOutputs, type RubricCriterion } from '../server/structuredGrading.js';
 import { isSameOriginRequest, methodNotAllowed, readJsonBody, sendJson } from '../server/http.js';
 import type { Answers, MarkingPointFeedback, PaperScore, PaperStyle, Track } from '../src/types.js';
@@ -85,8 +85,9 @@ const PAPER_ORDER: Record<Track, PaperStyle[]> = {
 export default async function handler(request: IncomingMessage, response: ServerResponse): Promise<void> {
   if (request.method !== 'POST') return methodNotAllowed(response, 'POST');
   if (!isSameOriginRequest(request)) return sendJson(response, 403, { error: 'This request is not allowed.' });
-  const track = getSessionTrack(request, process.env.SESSION_SIGNING_SECRET);
-  if (!track) return sendJson(response, 401, { error: 'Your exam session has expired. Enter the Homework Password again.' });
+  const context = getSessionContext(request, process.env.SESSION_SIGNING_SECRET);
+  if (!context) return sendJson(response, 401, { error: 'Your exam session has expired. Enter the Homework Password again.' });
+  const { track, session } = context;
 
   let body: Record<string, unknown>;
   try {
@@ -94,7 +95,8 @@ export default async function handler(request: IncomingMessage, response: Server
   } catch {
     return sendJson(response, 400, { error: 'Please submit a valid marking request.' });
   }
-  if (!matchesConfiguredPassword(body.markingPassword, process.env.MARKING_PASSWORD)) {
+  const markingPassword = process.env[`MARKING_PASSWORD_${session.replace('.', '')}`];
+  if (!matchesConfiguredPassword(body.markingPassword, markingPassword)) {
     return sendJson(response, 401, { error: 'That Marking Password was not accepted.' });
   }
   const storedAnswerKey = process.env.ANSWER_KEY_JSON;
@@ -112,7 +114,8 @@ export default async function handler(request: IncomingMessage, response: Server
     return sendJson(response, 503, { error: 'The marking service is not configured.' });
   }
 
-  const trackQuestions = EXAM_QUESTIONS.filter((question) => question.track === track);
+  const sessionPrefix = `Q${session.replace('.', '')}`;
+  const trackQuestions = EXAM_QUESTIONS.filter((question) => question.track === track && question.id.startsWith(sessionPrefix));
   if (trackQuestions.length === 0) return sendJson(response, 503, { error: 'The selected exam track is not configured.' });
   const submitted = body.answers;
   if (!submitted || typeof submitted !== 'object' || Array.isArray(submitted)) {
@@ -251,6 +254,7 @@ export default async function handler(request: IncomingMessage, response: Server
   const percentage = maxScore ? Math.round((score / maxScore) * 1000) / 10 : 0;
   return sendJson(response, 200, {
     track,
+    session,
     score,
     max_score: maxScore,
     percentage,

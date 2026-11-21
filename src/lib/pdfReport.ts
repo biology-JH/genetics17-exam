@@ -49,7 +49,7 @@ function dateLabel(): string {
 const PDF_FONT_SIZE = 12;
 
 export async function downloadMarkedScript(studentName: string, exam: ExamPayload, answers: Answers, result: GradeResult): Promise<void> {
-  if (result.track !== exam.track) throw new Error('The marked script does not match the selected exam track.');
+  if (result.track !== exam.track || result.session !== exam.session) throw new Error('The marked PDF does not match the selected weekly session.');
   const { jsPDF } = await import('jspdf');
   const document = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4', compress: true });
   const pageWidth = document.internal.pageSize.getWidth();
@@ -117,7 +117,7 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
 
   const formattedName = studentName.trim() || 'Not provided';
   writeText('GENETICS / 17', 12, 'bold', [15, 119, 112], 8);
-  writeText(`Marked script · ${result.track} track`, 12, 'normal', [21, 37, 34], 13);
+  writeText(`Marked PDF · Session ${result.session} · ${result.track} track`, 12, 'normal', [21, 37, 34], 13);
   writeText('CIE IGCSE Biology 0610 · Topic 17: Inheritance', 12, 'bold', [35, 53, 48], 12);
   writeText(`Student Name: ${formattedName}`, 12, 'bold', [35, 53, 48], 5);
   writeText(`Date: ${dateLabel()}`, 12, 'normal', [101, 115, 111], 12);
@@ -178,5 +178,5 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     document.text(`Chapter 17 Genetics · ${result.track} · ${page} / ${pageCount}`, pageWidth - margin, pageHeight - 20, { align: 'right' });
   }
   const safeName = studentName.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  document.save(`genetics17-${result.track.toLowerCase()}-marked-script-${safeName || 'student'}.pdf`);
+  document.save(`genetics17-${result.session.replace('.', '-')}-${result.track.toLowerCase()}-marked-pdf-${safeName || 'student'}.pdf`);
 }
