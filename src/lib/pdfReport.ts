@@ -99,9 +99,9 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     cursor += 9;
   }
 
-  function writeImage(image: EmbeddedImage, alt: string, source: string): void {
-    const maxWidth = contentWidth;
-    const maxHeight = 300;
+  function writeImage(image: EmbeddedImage, alt: string, source: string, questionId: string): void {
+    const maxWidth = questionId === 'Q171_05_C' || questionId === 'Q171_05_E' ? Math.min(contentWidth, 300) : Math.min(contentWidth, 430);
+    const maxHeight = questionId === 'Q171_05_C' || questionId === 'Q171_05_E' ? 220 : 270;
     const scale = Math.min(maxWidth / image.width, maxHeight / image.height);
     const width = image.width * scale;
     const height = image.height * scale;
@@ -141,7 +141,7 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     if (question.visual_hint) {
       const image = loadedImages.get(question.visual_hint);
       if (!image) throw new Error(`The source diagram for ${question.id} is unavailable.`);
-      writeImage(image, question.visual_alt || 'PowerPoint source diagram', `${question.source_deck}, slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`);
+      writeImage(image, question.visual_alt || 'PowerPoint source diagram', `${question.source_deck}, slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`, question.id);
     }
 
     const feedbackByPart = new Map(marked.parts.map((part) => [part.part_id, part]));
