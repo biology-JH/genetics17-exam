@@ -34,10 +34,10 @@ small, figcaption, legend, label, .sr-only { font-size: max(24px, 1em); }
 .brand-subtitle { display: block; margin-top: 4px; color: var(--muted); font-size: 24px; line-height: 1.25; }
 .topbar-meta { max-width: 42%; color: var(--muted); font-size: 24px; font-weight: 700; line-height: 1.35; letter-spacing: .03em; text-align: right; overflow-wrap: anywhere; }
 
-.gate-wrap { width: min(1320px, calc(100% - 40px)); margin: clamp(44px, 8vh, 96px) auto 88px; }
-.gate-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(420px, .85fr); gap: clamp(32px, 7vw, 96px); align-items: center; }
+.gate-wrap { width: min(1320px, calc(100% - 40px)); margin: clamp(24px, 4vh, 56px) auto 88px; }
+.gate-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(420px, .75fr); gap: clamp(32px, 6vw, 82px); align-items: start; }
 .gate-welcome { min-width: 0; padding: clamp(24px, 4vw, 42px); border: 1px solid rgba(15,119,112,.15); border-radius: 24px; background: radial-gradient(circle at 88% 9%, rgba(15,119,112,.12), transparent 32%), linear-gradient(140deg, #fffefa 0%, #edf4ef 100%); box-shadow: 0 24px 70px rgba(19,45,40,.09); }
-.gate-cover { margin: 28px 0 24px; overflow: hidden; border: 1px solid rgba(255,255,255,.46); border-radius: 18px; background: #10192d; box-shadow: 0 18px 40px rgba(16,25,45,.22); }
+.gate-cover { margin: 20px 0 24px; overflow: hidden; border: 1px solid rgba(255,255,255,.46); border-radius: 18px; background: #10192d; box-shadow: 0 18px 40px rgba(16,25,45,.22); }
 .gate-cover img { display: block; width: 100%; height: auto; }
 .gate-cover figcaption { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 14px 18px; color: #fff; background: linear-gradient(90deg, #10192d, #18344c); font-size: 24px; font-weight: 800; line-height: 1.35; letter-spacing: .08em; }
 .gate-cover figcaption span { color: #66c1b6; }
