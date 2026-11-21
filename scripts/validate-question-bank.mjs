@@ -147,7 +147,8 @@ for (const track of ['Core', 'Extended']) {
 
 const uniqueImageDigests = new Set(referencedImages.values());
 const additionalImageDigests = new Set([...uniqueImageDigests].filter((digest) => !originalImageDigests.has(digest)));
-const minimumAdditionalImageDigests = 13;
+// Session 17.4 Question 11 was intentionally removed; its unique figure is no longer referenced.
+const minimumAdditionalImageDigests = 12;
 if (additionalImageDigests.size < minimumAdditionalImageDigests) fail(`only ${additionalImageDigests.size} distinct diagrams/images are new relative to the original two assets; at least ${minimumAdditionalImageDigests} additional images are required for the expanded bank`);
 
 if (!process.exitCode) {

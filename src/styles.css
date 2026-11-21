@@ -113,7 +113,7 @@ h1, h2, h3, p { margin-top: 0; }
 .question-meta span { max-width: 100%; min-width: 0; overflow-wrap: anywhere; }
 .question-stem { margin-bottom: 20px; color: var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: 26px; font-weight: 500; line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere; }
 .question-visual { max-width: 100%; margin: 0 0 22px; padding: 14px; border: 1px solid var(--line); background: #fff; }
-.question-visual img { display: block; max-width: 100%; max-height: 680px; height: auto; margin: auto; object-fit: contain; }
+.question-visual img { display: block; width: min(100%, 1120px); max-width: 100%; max-height: 780px; height: auto; min-height: 180px; margin: auto; object-fit: contain; image-rendering: auto; }
 .question-visual figcaption { margin-top: 12px; color: var(--muted); font-size: 24px; line-height: 1.4; text-align: center; overflow-wrap: anywhere; }
 .part-block { margin-top: 20px; padding-top: 18px; border-top: 1px solid #e6e9e3; }
 .part-heading { display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; gap: 10px; align-items: start; margin-bottom: 14px; }

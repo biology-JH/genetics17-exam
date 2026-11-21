@@ -65,10 +65,10 @@
 
 ## 7. Additional higher-order questions and diagrams
 
-- [x] Add five new higher-order questions to Core and five to Extended, increasing the bank from 16 to 21 Core questions and from 22 to 27 Extended questions (48 total).
+- [x] Add five new higher-order questions to Core and five to Extended; after the requested Session 17.4 cleanup, the bank contains 19 Core and 26 Extended questions (45 total).
 - [x] Base every new question's biology facts, examples, answer and diagram solely on the five uploaded Chapter 17 PowerPoints, label any synthetic practice values as hypothetical, and map each question to exact Topic 17 objective IDs and its track's paper style.
 - [x] Require each new question to test application, analysis or evaluation, not stand-alone recall.
-- [x] Integrate five additional, previously unused, high-clarity PowerPoint diagram crops—one from each deck—with accurate slide citation and accessible alt text.
+- [x] Integrate five additional, previously unused, high-clarity PowerPoint diagram crops—one from each deck—with accurate slide citation and accessible alt text; the removed Question 11 figure is no longer referenced.
 - [x] Allow new questions and diagrams to overlap between Core and Extended, while enforcing zero duplicate questions and zero repeated diagram/image content within Core and within Extended.
 - [x] Update the local private server-side marking key, score totals and PDF marked-script content for the new questions without exposing correct answers in the exam payload, frontend build or LocalStorage.
 
@@ -98,3 +98,5 @@
 - [x] Use unique server-only `MARKING_PASSWORD_171`, `MARKING_PASSWORD_172`, `MARKING_PASSWORD_173` and `MARKING_PASSWORD_174` values for the four marking gates.
 - [x] Send only the active session's questions, student answers and server-side rubric to AI marking, and calculate the score against that session's total.
 - [x] Provide a `Download Marked PDF · 17.x` action that contains only the active session's questions, answers, inline marking feedback and weekly score.
+- [x] Remove Session 17.4 Question 11 from both tracks and remove the repeated Extended ABO question; preserve valid objective coverage and audit remaining allele notation.
+- [x] Render all source diagrams at a large responsive size in the browser and upscale small source assets in marked PDFs while preserving aspect ratio.

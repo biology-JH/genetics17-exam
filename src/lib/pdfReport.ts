@@ -101,8 +101,8 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
 
   function writeImage(image: EmbeddedImage, alt: string, source: string): void {
     const maxWidth = contentWidth;
-    const maxHeight = 180;
-    const scale = Math.min(maxWidth / image.width, maxHeight / image.height, 1);
+    const maxHeight = 300;
+    const scale = Math.min(maxWidth / image.width, maxHeight / image.height);
     const width = image.width * scale;
     const height = image.height * scale;
     ensureSpace(height + 38);

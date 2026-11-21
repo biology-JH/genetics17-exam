@@ -6,7 +6,7 @@ Update the existing responsive React/Vite quiz in the current `biology-JH/geneti
 
 The official reference is the [Cambridge IGCSE Biology 0610 course page](https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-igcse-biology-0610/) and its [2026–2028 syllabus PDF](https://www.cambridgeinternational.org/Images/697203-2026-2028-syllabus.pdf). Cambridge identifies Topic 17 as **Inheritance**, with sections 17.1 Chromosomes, genes and proteins, 17.2 Mitosis, 17.3 Meiosis and 17.4 Monohybrid inheritance. The linked [version 3 syllabus update, August 2026](https://www.cambridgeinternational.org/Images/748912-2026-2028-syllabus-update.pdf) says the Assessment Overview on page 9 changed; Topic 17 content was not changed.
 
-Before this enhancement, the bank contained 38 higher-order questions (16 Core and 22 Extended) and eight distinct source-diagram assets. The completed expansion adds five questions per track for 48 total (21 Core and 27 Extended) and integrates five previously unused PowerPoint diagram crops—one from each uploaded deck—bringing the additional-distinct-image count beyond the two initial assets to thirteen.
+Before this enhancement, the bank contained 38 higher-order questions (16 Core and 22 Extended) and eight distinct source-diagram assets. The completed expansion added five questions per track; the later Session 17.4 cleanup removes Question 11 from both tracks and one repeated Extended ABO item, leaving 45 questions (19 Core and 26 Extended) and 12 additional distinct images beyond the two initial assets.
 
 ## Track and syllabus model
 
