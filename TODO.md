@@ -105,4 +105,4 @@
 
 ## 11. Creator attribution
 
-- [x] At the very bottom of both the welcome/session-selection view and the active exam view, place the supplied giraffe icon directly in front of the exact text “Created by Ms. Joyce Ho”.
+- [x] At the very bottom, right-aligned in both the welcome/session-selection view and the active exam view, place the supplied giraffe icon directly in front of the exact text “Created by Ms. Joyce Ho”.

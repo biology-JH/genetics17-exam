@@ -155,7 +155,7 @@ h1, h2, h3, p { margin-top: 0; }
 .feedback-item strong { color: var(--ink); }
 .zero-incorrect { margin-top: 24px; padding: 18px; border-left: 4px solid var(--teal); color: var(--teal-dark); background: var(--teal-soft); font-size: 24px; line-height: 1.5; }
 .footer-note { max-width: 980px; margin: 36px auto 0; color: #52635d; font-size: 24px; line-height: 1.5; text-align: center; }
-.creator-footer { display: flex; justify-content: center; align-items: center; gap: 8px; max-width: 100%; margin: 36px auto 0; color: var(--muted); font-size: 24px; line-height: 1.35; text-align: center; }
+.creator-footer { display: flex; justify-content: flex-end; align-items: center; gap: 8px; max-width: 100%; margin: 36px auto 0; color: var(--muted); font-size: 24px; line-height: 1.35; text-align: right; }
 .creator-footer img { display: block; flex: 0 0 48px; width: 48px; height: 48px; object-fit: contain; }
 .marking-gate .ai-disclosure { margin: 16px 0 0; padding: 14px 16px; border-left: 4px solid var(--teal); color: var(--teal-dark); background: var(--teal-soft); font-size: 24px; line-height: 1.5; overflow-wrap: anywhere; }
 .grading-mode-note { margin: 14px 0 0; color: var(--muted); font-size: 24px; line-height: 1.45; }
