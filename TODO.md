@@ -1,6 +1,6 @@
 # Project outcomes
 
-**Current status:** The 48-question bank, five new source-slide figures and structured-grading code are live on Vercel. The approved expanded Production `ANSWER_KEY_JSON` works with the unchanged Homework and Marking passwords. The owner reports that `OPENROUTER_API_KEY` is already configured in Vercel. OpenRouter integration commit `f10d854` is pushed, and the stable Production homepage now serves the matching built JavaScript bundle. Mocked local tests verify the OpenRouter request and key isolation; a live Production model call has not been exercised. The live Extended mark flow previously completed at 0/124 in a blank-answer QA run, and its 28-page marked-script PDF downloaded with 17 embedded images and all 27 objective markers.
+**Current status:** GitHub `main` has been synchronized through `947c726`. The current question bank contains 45 questions (20 Core, 25 Extended) across four independent weekly sessions; bank validation, `pnpm typecheck` and `pnpm build` pass locally. The session-aware handler expects one server-side Homework Password and four per-session Marking Password variables. Production configuration and live marking have not been rechecked after the four-session update.
 
 ## 1. Source-grounded Chapter 17 question bank
 
@@ -65,7 +65,7 @@
 
 ## 7. Additional higher-order questions and diagrams
 
-- [x] Add five new higher-order questions to Core and five to Extended; after the requested Session 17.4 cleanup, the bank contains 19 Core and 26 Extended questions (45 total).
+- [x] Add five new higher-order questions to Core and five to Extended; after the requested Session 17.4 cleanup, the bank contains 20 Core and 25 Extended questions (45 total).
 - [x] Base every new question's biology facts, examples, answer and diagram solely on the five uploaded Chapter 17 PowerPoints, label any synthetic practice values as hypothetical, and map each question to exact Topic 17 objective IDs and its track's paper style.
 - [x] Require each new question to test application, analysis or evaluation, not stand-alone recall.
 - [x] Integrate five additional, previously unused, high-clarity PowerPoint diagram crops—one from each deck—with accurate slide citation and accessible alt text; the removed Question 11 figure is no longer referenced.
@@ -100,3 +100,9 @@
 - [x] Provide a `Download Marked PDF · 17.x` action that contains only the active session's questions, answers, inline marking feedback and weekly score.
 - [x] Remove Session 17.4 Question 11 from both tracks and remove the repeated Extended ABO question; preserve valid objective coverage and audit remaining allele notation.
 - [x] Render all source diagrams at a large responsive size in the browser and upscale small source assets in marked PDFs while preserving aspect ratio.
+- [x] Restore pre-sessionization `genetics17-progress-v2-*` answers into the matching track-and-week keys without mixing sessions or allowing cleared answers to return.
+- [ ] Confirm Vercel Production has the four session-specific Marking Password variables required by the current server handler; do not change secret values without owner approval.
+
+## 11. Creator attribution
+
+- [x] At the very bottom of both the welcome/session-selection view and the active exam view, place the supplied giraffe icon directly in front of the exact text “Created by Ms. Joyce Ho”.

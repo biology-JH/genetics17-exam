@@ -6,7 +6,7 @@ Update the existing responsive React/Vite quiz in the current `biology-JH/geneti
 
 The official reference is the [Cambridge IGCSE Biology 0610 course page](https://www.cambridgeinternational.org/programmes-and-qualifications/view/cambridge-igcse-biology-0610/) and its [2026–2028 syllabus PDF](https://www.cambridgeinternational.org/Images/697203-2026-2028-syllabus.pdf). Cambridge identifies Topic 17 as **Inheritance**, with sections 17.1 Chromosomes, genes and proteins, 17.2 Mitosis, 17.3 Meiosis and 17.4 Monohybrid inheritance. The linked [version 3 syllabus update, August 2026](https://www.cambridgeinternational.org/Images/748912-2026-2028-syllabus-update.pdf) says the Assessment Overview on page 9 changed; Topic 17 content was not changed.
 
-Before this enhancement, the bank contained 38 higher-order questions (16 Core and 22 Extended) and eight distinct source-diagram assets. The completed expansion added five questions per track; the later Session 17.4 cleanup removes Question 11 from both tracks and one repeated Extended ABO item, leaving 45 questions (19 Core and 26 Extended) and 12 additional distinct images beyond the two initial assets.
+Before this enhancement, the bank contained 38 higher-order questions (16 Core and 22 Extended) and eight distinct source-diagram assets. The completed expansion added five questions per track; the later Session 17.4 cleanup removes Question 11 from both tracks and one repeated Extended ABO item, leaving 45 questions (20 Core and 25 Extended) and 12 additional distinct images beyond the two initial assets.
 
 ## Track and syllabus model
 
@@ -92,6 +92,8 @@ Reuse the existing TypeScript/React/Vite frontend, Vercel serverless handlers, `
 ## Four-week session enhancement
 
 The existing `Q171`, `Q172`, `Q173` and `Q174` question IDs are the authoritative partition. The landing page exposes four session tabs, and the selected session plus Core/Extended track is included in the signed 12-hour token. `/api/exam` filters by both claims, while `/api/grade` derives the same session prefix and reads only the matching `MARKING_PASSWORD_171` through `MARKING_PASSWORD_174` environment variable. This keeps each AI request limited to the active week's questions, answers and server-side rubric; all totals are calculated from that filtered set. LocalStorage keys become track-and-session specific, and the client PDF filename/header identify the week while iterating only over the active payload.
+
+On upgrade, restore older track-wide `genetics17-progress-v2-*` answers into the matching session key by filtering on question IDs, without allowing cleared session answers to reappear. At the bottom of both the welcome/session-selection view and active exam view, display the supplied giraffe GIF directly before the exact text “Created by Ms. Joyce Ho”.
 
 After approval, update `TODO.md` with the complete acceptance outcomes before implementation. Finalize the objective-to-question matrix from the five-deck audit; rewrite/add track-specific higher-order questions and construct a per-track paper mix; extract and select source images with the hash-based track deduplication rule; then implement the track-bound API, localStorage partitioning, 24px-minimum web typography and full marked-script PDF. Keep the current answer key out of tracked/frontend files and test the new key locally using ignored private files. Run the existing TypeScript diagnostics, typecheck and production build, verify the `/manus-routes.json` route, and inspect the frontend build/committed files for answer-key leakage.
 
