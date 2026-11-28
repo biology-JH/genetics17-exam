@@ -21,7 +21,7 @@ export default function QuestionCard({ question, number, answers, onAnswer }: Pr
           <span>{question.cognitive_skill}</span>
           <span>Difficulty {question.difficulty}/5</span>
           <span>Objectives {question.objective_ids.join(', ')}</span>
-          <span>{question.source_deck} · Slide{question.source_slides.length === 1 ? '' : 's'} {question.source_slides.join(', ')}</span>
+          <span>{question.source_label || `${question.source_deck} · Slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`}</span>
         </div>
         <p className="question-stem">{question.stem}</p>
         {question.visual_hint && (
@@ -30,6 +30,12 @@ export default function QuestionCard({ question, number, answers, onAnswer }: Pr
             <figcaption>Source visual · {question.source_deck} · slide{question.source_slides.length === 1 ? '' : 's'} {question.source_slides.join(', ')}</figcaption>
           </figure>
         )}
+        {question.revision_visuals?.map((visual) => (
+          <figure className="question-visual" key={visual.src}>
+            <img src={visual.src} alt={visual.alt} loading="lazy" />
+            <figcaption>{visual.alt} · {visual.source}</figcaption>
+          </figure>
+        ))}
         {question.parts.map((part, index) => {
           const answer = answers[question.id]?.[part.id] ?? '';
           const partLabel = `${number}, part ${index + 1}`;

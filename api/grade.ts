@@ -2,6 +2,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http';
 import { Buffer } from 'node:buffer';
 import { gunzipSync } from 'node:zlib';
 import { EXAM_QUESTIONS } from '../server/questionBank.js';
+import { selectRevisionQuestions } from '../server/revisionQuestionBank.js';
 import { getSessionContext, matchesConfiguredPassword } from '../server/security.js';
 import { gradeWithStructuredOutputs, type RubricCriterion } from '../server/structuredGrading.js';
 import { isSameOriginRequest, methodNotAllowed, readJsonBody, sendJson } from '../server/http.js';
@@ -81,6 +82,7 @@ const PAPER_ORDER: Record<Track, PaperStyle[]> = {
   Core: ['Paper 1', 'Paper 3', 'Paper 6'],
   Extended: ['Paper 2', 'Paper 4', 'Paper 6'],
 };
+const REVISION_PAPER_ORDER: PaperStyle[] = ['Paper 1', 'Paper 2', 'Paper 3', 'Paper 4', 'Paper 6'];
 
 export default async function handler(request: IncomingMessage, response: ServerResponse): Promise<void> {
   if (request.method !== 'POST') return methodNotAllowed(response, 'POST');
@@ -99,7 +101,7 @@ export default async function handler(request: IncomingMessage, response: Server
   if (!matchesConfiguredPassword(body.markingPassword, markingPassword)) {
     return sendJson(response, 401, { error: 'That Marking Password was not accepted.' });
   }
-  const storedAnswerKey = process.env.ANSWER_KEY_JSON;
+  const storedAnswerKey = context.mode === 'weekly' ? process.env.ANSWER_KEY_JSON : process.env.REVISION_ANSWER_KEY_JSON;
   if (!storedAnswerKey) return sendJson(response, 503, { error: 'The marking service is not configured.' });
 
   let answerKey: AnswerKey;
@@ -115,7 +117,9 @@ export default async function handler(request: IncomingMessage, response: Server
   }
 
   const sessionPrefix = `Q${session.replace('.', '')}`;
-  const trackQuestions = EXAM_QUESTIONS.filter((question) => question.track === track && question.id.startsWith(sessionPrefix));
+  const trackQuestions = context.mode === 'weekly'
+    ? EXAM_QUESTIONS.filter((question) => question.track === track && question.id.startsWith(sessionPrefix))
+    : selectRevisionQuestions(track, context.mode, context.revisionDifficulty);
   if (trackQuestions.length === 0) return sendJson(response, 503, { error: 'The selected exam track is not configured.' });
   const submitted = body.answers;
   if (!submitted || typeof submitted !== 'object' || Array.isArray(submitted)) {
@@ -246,7 +250,8 @@ export default async function handler(request: IncomingMessage, response: Server
     });
   }
 
-  const paper_scores: PaperScore[] = PAPER_ORDER[track].map((paper) => ({
+  const paperOrder: PaperStyle[] = context.mode === 'weekly' ? PAPER_ORDER[track] : REVISION_PAPER_ORDER.filter((paper) => trackQuestions.some((question) => question.paper === paper));
+  const paper_scores: PaperScore[] = paperOrder.map((paper) => ({
     paper,
     score: byPaper.get(paper)?.score ?? 0,
     max_score: byPaper.get(paper)?.max_score ?? 0,
@@ -255,6 +260,8 @@ export default async function handler(request: IncomingMessage, response: Server
   return sendJson(response, 200, {
     track,
     session,
+    mode: context.mode,
+    ...(context.revisionDifficulty ? { revision_difficulty: context.revisionDifficulty } : {}),
     score,
     max_score: maxScore,
     percentage,

@@ -98,3 +98,26 @@ On upgrade, restore older track-wide `genetics17-progress-v2-*` answers into the
 After approval, update `TODO.md` with the complete acceptance outcomes before implementation. Finalize the objective-to-question matrix from the five-deck audit; rewrite/add track-specific higher-order questions and construct a per-track paper mix; extract and select source images with the hash-based track deduplication rule; then implement the track-bound API, localStorage partitioning, 24px-minimum web typography and full marked-script PDF. Keep the current answer key out of tracked/frontend files and test the new key locally using ignored private files. Run the existing TypeScript diagnostics, typecheck and production build, verify the `/manus-routes.json` route, and inspect the frontend build/committed files for answer-key leakage.
 
 Before release, request a separate confirmation before replacing the existing Vercel Production `ANSWER_KEY_JSON` Secret value with the new track-complete key, using the verified gzip64 encoding if required; no other production settings will be changed without approval. After approval, update that server-only value, then push the code to the existing canonical `main` branch so the Vercel Git integration builds the matching code and key together. Confirm the resulting Production deployment and exercise the live one-track unlock, blocked cross-track access, marking and marked-script download before reporting the operational URL.
+
+
+## Chapter 17 Revision practice modes
+
+Add a **Chapter 17 Revision** card beneath the welcome/hero card in the landing page’s left column, opposite the existing authentication panel. It provides **Revision Multiple Choice** and **Revision Long Questions**; long questions expose Easy, Medium and Hard difficulty choices. Reuse the existing scientific editorial cards, typography and palette, and keep the 17.1 session-tab text from overflowing on narrow screens.
+
+The right-hand panel remains the sole Gate 1: students choose Core or Extended, enter Student Name and Homework Password, and choose one of the existing weekly sessions. The selected week remains the existing credential namespace so no new passwords are introduced: the revision request and signed token additionally bind the selected revision mode and (for long questions) difficulty. The weekly question flow remains unchanged. Autosaved revision answers use separate LocalStorage keys by track, week credential, mode and difficulty; they cannot overwrite weekly answers or another revision set.
+
+Add the 36 MCQs and 19 theory questions from the two user-supplied PDFs to an answer-free server question bank. Core users receive Core questions only; Extended users receive Core and Extended questions. Long-question parts explicitly labelled “Extended only” are excluded for Core users and retained for Extended users; the selected Easy/Medium/Hard band further filters long questions. Preserve the PDF’s supplied wording, choices and marks, and include source page references and cropped figures for prompts that depend on a figure.
+
+Extend the existing signed-session contract with an optional activity mode and long-question difficulty. `/api/unlock` binds those fields with the selected track and weekly credential session; `/api/exam` returns only the authorized revision set; `/api/grade` validates and marks only those question/part IDs. Put revision correct answers and rubric points in a separate server-only Vercel runtime secret, `REVISION_ANSWER_KEY_JSON`; do not place answers or marking points in the tracked question bank, static build or browser storage. Reuse the current Marking Password flow, structured rubric grader, score breakdown, progress/autosave and client-generated marked-script PDF analysis workflow. The revision PDF identifies revision mode and difficulty and contains only the authorized set.
+
+### Implementation structure additions
+
+- `src/App.tsx` — landing-page revision mode and difficulty selection, unlock state and revision-aware exam/result labels.
+- `src/types.ts`, `src/lib/api.ts` — typed mode/difficulty claims and payloads while keeping weekly API calls backward compatible.
+- `src/lib/storage.ts` — isolated progress keys for revision mode and difficulty; keep existing weekly migrations unchanged.
+- `src/components/QuestionCard.tsx`, `src/styles.css` — render source PDF page references, revision figures and the responsive Chapter 17 Revision card; prevent 17.1 tab text overflow.
+- `src/lib/pdfReport.ts` — include revision mode/difficulty in report heading and filename while retaining the existing complete marked-report analysis format.
+- `server/revisionQuestionBankData.json`, `server/revisionQuestionBank.ts` — answer-free imported revision questions and server-side track/difficulty selection.
+- `server/security.ts`, `api/unlock.ts`, `api/exam.ts`, `api/grade.ts` — sign and enforce track/session/mode/difficulty; branch the grader to the separate revision key only for revision tokens.
+- `public/revision-assets/` — cropped, question-only visuals from the supplied PDFs where a figure is required.
+- `scripts/validate-revision-bank.mjs` — verify question IDs, tiers, parts, marks, difficulty coverage and absence of key fields from the answer-free bank.

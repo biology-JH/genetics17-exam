@@ -1,9 +1,11 @@
-import type { Answers, SavedProgress, Session, Track } from '../types';
+import type { ActivityMode, Answers, RevisionDifficulty, SavedProgress, Session, Track } from '../types';
 
 const LEGACY_STORAGE_KEY = 'genetics17-progress-v1';
 const legacyTrackStorageKey = (track: Track) => `genetics17-progress-v2-${track.toLowerCase()}`;
 const storageKey = (track: Track, session: Session) => `genetics17-progress-v3-${track.toLowerCase()}-${session.replace('.', '-')}`;
 const migrationKey = (track: Track, session: Session) => `genetics17-progress-legacy-migrated-${track.toLowerCase()}-${session.replace('.', '-')}`;
+const activityStorageKey = (track: Track, session: Session, mode: ActivityMode, difficulty?: RevisionDifficulty) =>
+  mode === 'weekly' ? storageKey(track, session) : `genetics17-progress-v4-${track.toLowerCase()}-${session.replace('.', '-')}-${mode}${difficulty ? `-${difficulty.toLowerCase()}` : ''}`;
 const STUDENT_NAME_STORAGE_KEY = 'genetics17-student-name-v1';
 
 const emptyProgress = (): SavedProgress => ({ answers: {}, studentName: '', updatedAt: '' });
@@ -24,14 +26,15 @@ function filterAnswers(answers: Answers, allowedQuestionIds: ReadonlySet<string>
   return Object.fromEntries(Object.entries(answers).filter(([questionId]) => allowedQuestionIds.has(questionId)));
 }
 
-export function loadProgress(track: Track, session: Session, allowedQuestionIds: string[]): SavedProgress {
+export function loadProgress(track: Track, session: Session, allowedQuestionIds: string[], mode: ActivityMode = 'weekly', difficulty?: RevisionDifficulty): SavedProgress {
   if (typeof window === 'undefined') return emptyProgress();
   try {
     const allowed = new Set(allowedQuestionIds);
-    const current = parseProgress(window.localStorage.getItem(storageKey(track, session)));
+    const current = parseProgress(window.localStorage.getItem(activityStorageKey(track, session, mode, difficulty)));
     const currentAnswers = filterAnswers(current.answers, allowed);
     if (Object.keys(currentAnswers).length > 0) return { ...current, answers: currentAnswers };
 
+    if (mode !== 'weekly') return { ...current, answers: currentAnswers };
     const alreadyMigrated = window.localStorage.getItem(migrationKey(track, session)) === '1';
     if (alreadyMigrated) return { ...current, answers: currentAnswers };
 
@@ -85,18 +88,18 @@ export function saveStudentName(name: string): void {
   } catch { /* storage is optional */ }
 }
 
-export function saveProgress(track: Track, session: Session, progress: SavedProgress): void {
+export function saveProgress(track: Track, session: Session, progress: SavedProgress, mode: ActivityMode = 'weekly', difficulty?: RevisionDifficulty): void {
   if (typeof window === 'undefined') return;
   try {
-    window.localStorage.setItem(storageKey(track, session), JSON.stringify({ answers: progress.answers, studentName: progress.studentName, updatedAt: new Date().toISOString() }));
-    window.localStorage.setItem(migrationKey(track, session), '1');
+    window.localStorage.setItem(activityStorageKey(track, session, mode, difficulty), JSON.stringify({ answers: progress.answers, studentName: progress.studentName, updatedAt: new Date().toISOString() }));
+    if (mode === 'weekly') window.localStorage.setItem(migrationKey(track, session), '1');
   } catch { /* storage is optional */ }
 }
 
-export function clearProgress(track: Track, session: Session): void {
+export function clearProgress(track: Track, session: Session, mode: ActivityMode = 'weekly', difficulty?: RevisionDifficulty): void {
   if (typeof window === 'undefined') return;
   try {
-    window.localStorage.removeItem(storageKey(track, session));
-    window.localStorage.setItem(migrationKey(track, session), '1');
+    window.localStorage.removeItem(activityStorageKey(track, session, mode, difficulty));
+    if (mode === 'weekly') window.localStorage.setItem(migrationKey(track, session), '1');
   } catch { /* storage is optional */ }
 }

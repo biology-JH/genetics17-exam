@@ -49,7 +49,7 @@ function dateLabel(): string {
 const PDF_FONT_SIZE = 12;
 
 export async function downloadMarkedScript(studentName: string, exam: ExamPayload, answers: Answers, result: GradeResult): Promise<void> {
-  if (result.track !== exam.track || result.session !== exam.session) throw new Error('The marked PDF does not match the selected weekly session.');
+  if (result.track !== exam.track || result.session !== exam.session || (result.mode ?? 'weekly') !== (exam.mode ?? 'weekly') || result.revision_difficulty !== exam.revision_difficulty) throw new Error('The marked PDF does not match the selected activity.');
   const { jsPDF } = await import('jspdf');
   const document = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4', compress: true });
   const pageWidth = document.internal.pageSize.getWidth();
@@ -111,13 +111,14 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     writeText(`${alt} · ${source}`, 12, 'normal', [101, 115, 111], 10);
   }
 
-  const imageUrls = [...new Set(exam.questions.map((question) => question.visual_hint).filter(Boolean))];
+  const imageUrls = [...new Set(exam.questions.flatMap((question) => [question.visual_hint, ...(question.revision_visuals ?? []).map((visual) => visual.src)]).filter(Boolean))];
   const loadedImages = new Map<string, EmbeddedImage>();
   await Promise.all(imageUrls.map(async (url) => loadedImages.set(url, await loadEmbeddedImage(url))));
 
   const formattedName = studentName.trim() || 'Not provided';
   writeText('GENETICS / 17', 12, 'bold', [15, 119, 112], 8);
-  writeText(`Marked PDF · Session ${result.session} · ${result.track} track`, 12, 'normal', [21, 37, 34], 13);
+  const activityTitle = result.mode === 'revision-mcq' ? 'Revision Multiple Choice' : result.mode === 'revision-long' ? `Revision Long Questions · ${result.revision_difficulty}` : `Session ${result.session}`;
+  writeText(`Marked PDF · ${activityTitle} · ${result.track} track`, 12, 'normal', [21, 37, 34], 13);
   writeText('CIE IGCSE Biology 0610 · Topic 17: Inheritance', 12, 'bold', [35, 53, 48], 12);
   writeText(`Student Name: ${formattedName}`, 12, 'bold', [35, 53, 48], 5);
   writeText(`Date: ${dateLabel()}`, 12, 'normal', [101, 115, 111], 12);
@@ -136,12 +137,17 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     writeRule();
     writeText(`Question ${index + 1} · ${question.paper} · ${question.level} · ${marked.earned} / ${marked.available} marks`, 12, 'bold', [21, 37, 34], 5);
     writeText(`Objective IDs: ${question.objective_ids.join(', ')} · Cognitive skill: ${question.cognitive_skill} · Difficulty ${question.difficulty}/5`, 12, 'normal', [101, 115, 111], 5);
-    writeText(`Source: ${question.source_deck}, slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`, 12, 'normal', [101, 115, 111], 7);
+    writeText(`Source: ${question.source_label || `${question.source_deck}, slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`}`, 12, 'normal', [101, 115, 111], 7);
     writeText(question.stem, 12, 'bold', [35, 53, 48], 8);
     if (question.visual_hint) {
       const image = loadedImages.get(question.visual_hint);
       if (!image) throw new Error(`The source diagram for ${question.id} is unavailable.`);
       writeImage(image, question.visual_alt || 'PowerPoint source diagram', `${question.source_deck}, slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`, question.id);
+    }
+    for (const visual of question.revision_visuals ?? []) {
+      const image = loadedImages.get(visual.src);
+      if (!image) throw new Error(`The source figure for ${question.id} is unavailable.`);
+      writeImage(image, visual.alt, visual.source, question.id);
     }
 
     const feedbackByPart = new Map(marked.parts.map((part) => [part.part_id, part]));
@@ -178,5 +184,6 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     document.text(`Chapter 17 Genetics · ${result.track} · ${page} / ${pageCount}`, pageWidth - margin, pageHeight - 20, { align: 'right' });
   }
   const safeName = studentName.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  document.save(`genetics17-${result.session.replace('.', '-')}-${result.track.toLowerCase()}-marked-pdf-${safeName || 'student'}.pdf`);
+  const modeSlug = result.mode === 'revision-mcq' ? 'revision-multiple-choice' : result.mode === 'revision-long' ? `revision-long-${result.revision_difficulty?.toLowerCase()}` : result.session.replace('.', '-');
+  document.save(`genetics17-${modeSlug}-${result.track.toLowerCase()}-marked-pdf-${safeName || 'student'}.pdf`);
 }

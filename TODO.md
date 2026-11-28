@@ -106,3 +106,13 @@
 ## 11. Creator attribution
 
 - [x] At the very bottom, right-aligned in both the welcome/session-selection view and the active exam view, place the supplied giraffe icon directly in front of the exact text “Created by Ms. Joyce Ho”.
+
+
+## 12. Chapter 17 Revision modes
+
+- [ ] In the empty bottom-left space on the landing page, below the main hero/info card and to the left of the sidebar, add a **Chapter 17 Revision** section with two options: **Revision Multiple Choice** and **Revision Long Questions**.
+- [ ] Before starting either revision mode, students use the right-hand panel, in the same visual format as weekly sessions, to select Core or Extended, enter Student Name and enter the Homework Password.
+- [ ] Keep the same selected-week session binding, saved progress, Marking Password unlocking and Marked PDF Report with Analysis download workflow used in existing weekly sessions; keep revision progress isolated from weekly sessions, other tracks and other revision modes/difficulties.
+- [ ] For Revision Multiple Choice, Core students receive only Core MCQs; Extended students receive all MCQs (Core and Extended).
+- [ ] For Revision Long Questions, Core students receive only Core long questions; Extended students receive all long questions (Core and Extended). Provide an Easy, Medium or Hard difficulty selector.
+- [ ] Match the site's existing panel card layout, typography, colors and visual format; fix the slight overflow of “Chromosomes,” in the 17.1 session card so it fits cleanly.

@@ -17,6 +17,8 @@ const serverOnlyKeys = [
   'SESSION_SIGNING_SECRET',
   'ANSWER_KEY_JSON',
   'ANSWER_KEY_JSON_B64',
+  'REVISION_ANSWER_KEY_JSON',
+  'REVISION_ANSWER_KEY_JSON_B64',
   'OPENROUTER_API_KEY',
 ];
 
@@ -62,6 +64,15 @@ export default defineConfig(({ mode }) => {
       process.env.ANSWER_KEY_JSON = decoded;
     } catch {
       throw new Error('ANSWER_KEY_JSON_B64 must encode valid JSON.');
+    }
+  }
+  if (env.REVISION_ANSWER_KEY_JSON_B64) {
+    const decoded = Buffer.from(env.REVISION_ANSWER_KEY_JSON_B64, 'base64').toString('utf8');
+    try {
+      JSON.parse(decoded);
+      process.env.REVISION_ANSWER_KEY_JSON = decoded;
+    } catch {
+      throw new Error('REVISION_ANSWER_KEY_JSON_B64 must encode valid JSON.');
     }
   }
   for (const key of serverOnlyKeys) {
