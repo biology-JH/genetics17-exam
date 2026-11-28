@@ -21,7 +21,9 @@ export default function QuestionCard({ question, number, answers, onAnswer }: Pr
           <span>{question.cognitive_skill}</span>
           <span>Difficulty {question.difficulty}/5</span>
           <span>Objectives {question.objective_ids.join(', ')}</span>
-          <span>{question.source_label || `${question.source_deck} · Slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`}</span>
+          {!question.revision_visuals?.length && (
+            <span>{question.source_label || `${question.source_deck} · Slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`}</span>
+          )}
         </div>
         <p className="question-stem">{question.stem}</p>
         {question.visual_hint && (
@@ -33,7 +35,7 @@ export default function QuestionCard({ question, number, answers, onAnswer }: Pr
         {question.revision_visuals?.map((visual) => (
           <figure className="question-visual" key={visual.src}>
             <img src={visual.src} alt={visual.alt} loading="lazy" />
-            <figcaption>{visual.alt} · {visual.source}</figcaption>
+            <figcaption>{visual.alt}</figcaption>
           </figure>
         ))}
         {question.parts.map((part, index) => {

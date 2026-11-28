@@ -206,7 +206,7 @@ h1, h2, h3, p { margin-top: 0; }
 .gate-card { border-radius: 18px; box-shadow: 0 26px 66px rgba(19,45,40,.12); }
 
 .revision-card { margin-top: 28px; padding: clamp(22px, 3vw, 34px); border: 1px solid var(--line); border-top: 4px solid var(--coral); border-radius: 16px; background: rgba(255,254,250,.9); box-shadow: 0 14px 42px rgba(19,45,40,.07); }
-.revision-card h2 { margin: 10px 0 8px; font-family: Georgia, "Times New Roman", serif; font-size: 34px; font-weight: 500; line-height: 1.2; }
+.revision-card h2 { margin: 10px 0 8px; font-family: Georgia, "Times New Roman", serif; font-size: 34px; font-weight: 700; line-height: 1.2; }
 .revision-card > p { color: var(--muted); font-size: 24px; line-height: 1.5; }
 .revision-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .revision-option { display: grid; align-content: start; gap: 8px; min-width: 0; min-height: 110px; padding: 16px; border: 2px solid var(--line); color: var(--ink); background: #fff; text-align: left; transition: border-color .18s ease, background .18s ease, transform .18s ease; }

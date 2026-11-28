@@ -108,7 +108,7 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     ensureSpace(height + 38);
     document.addImage(image.data, image.format, margin, cursor, width, height, undefined, 'FAST');
     cursor += height + 7;
-    writeText(`${alt} · ${source}`, 12, 'normal', [101, 115, 111], 10);
+    writeText(source ? `${alt} · ${source}` : alt, 12, 'normal', [101, 115, 111], 10);
   }
 
   const imageUrls = [...new Set(exam.questions.flatMap((question) => [question.visual_hint, ...(question.revision_visuals ?? []).map((visual) => visual.src)]).filter(Boolean))];
@@ -137,7 +137,9 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     writeRule();
     writeText(`Question ${index + 1} · ${question.paper} · ${question.level} · ${marked.earned} / ${marked.available} marks`, 12, 'bold', [21, 37, 34], 5);
     writeText(`Objective IDs: ${question.objective_ids.join(', ')} · Cognitive skill: ${question.cognitive_skill} · Difficulty ${question.difficulty}/5`, 12, 'normal', [101, 115, 111], 5);
-    writeText(`Source: ${question.source_label || `${question.source_deck}, slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`}`, 12, 'normal', [101, 115, 111], 7);
+    if (!question.revision_visuals?.length) {
+      writeText(`Source: ${question.source_label || `${question.source_deck}, slide${question.source_slides.length === 1 ? '' : 's'} ${question.source_slides.join(', ')}`}`, 12, 'normal', [101, 115, 111], 7);
+    }
     writeText(question.stem, 12, 'bold', [35, 53, 48], 8);
     if (question.visual_hint) {
       const image = loadedImages.get(question.visual_hint);
@@ -147,7 +149,7 @@ export async function downloadMarkedScript(studentName: string, exam: ExamPayloa
     for (const visual of question.revision_visuals ?? []) {
       const image = loadedImages.get(visual.src);
       if (!image) throw new Error(`The source figure for ${question.id} is unavailable.`);
-      writeImage(image, visual.alt, visual.source, question.id);
+      writeImage(image, visual.alt, '', question.id);
     }
 
     const feedbackByPart = new Map(marked.parts.map((part) => [part.part_id, part]));
